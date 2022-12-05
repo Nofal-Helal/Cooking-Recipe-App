@@ -4,75 +4,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Categories-->
-        <scene sceneID="daP-Wr-Cxh">
-            <objects>
-                <viewController title="Categories" id="kDE-Lq-Mxo" customClass="CategoriesViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="PU0-r5-26A">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6vI-re-nhp"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="gQc-G4-O0K"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QCV-Lw-A26" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1823" y="382"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="8GP-Z2-paN">
-            <objects>
-                <viewController title="Settings" id="cXo-Vr-Uc4" customClass="SettingsViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="d6x-Ll-RCe">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Yzb-Mx-qiJ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="PsI-8o-cMk"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DsF-Nz-3ev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2814" y="383"/>
-        </scene>
-        <!--Recipes-->
-        <scene sceneID="Syx-Eg-fC5">
-            <objects>
-                <viewController title="Recipes" id="IFm-Ms-4j9" customClass="RecipesViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xNs-h3-roL">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="kJo-hA-zfh"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="hwq-pq-VdN"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CMd-4t-1vi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1849" y="-270"/>
-        </scene>
-        <!--Favourites-->
-        <scene sceneID="bNb-MF-8lR">
-            <objects>
-                <viewController title="Favourites" id="kpw-dR-1Cw" customClass="FavouritesViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MBX-uv-auN">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="gE9-Rq-No6"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Ad4-sP-Npv"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jTc-KE-L2E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2814" y="-289"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7JL-vY-uEH">
             <objects>
@@ -83,20 +17,61 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="IFm-Ms-4j9" kind="relationship" relationship="viewControllers" id="Tdh-ZB-o1V"/>
-                        <segue destination="kDE-Lq-Mxo" kind="relationship" relationship="viewControllers" id="Hln-0Z-AKL"/>
-                        <segue destination="kpw-dR-1Cw" kind="relationship" relationship="viewControllers" id="Bd7-nw-00A"/>
-                        <segue destination="cXo-Vr-Uc4" kind="relationship" relationship="viewControllers" id="l8V-aP-Qax"/>
+                        <segue destination="HY4-kU-R44" kind="relationship" relationship="viewControllers" id="Tdh-ZB-o1V"/>
+                        <segue destination="5Ts-vz-rvT" kind="relationship" relationship="viewControllers" id="Hln-0Z-AKL"/>
+                        <segue destination="ndA-Gg-xjW" kind="relationship" relationship="viewControllers" id="Bd7-nw-00A"/>
+                        <segue destination="biv-kI-SVe" kind="relationship" relationship="viewControllers" id="l8V-aP-Qax"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wrg-CW-Ya2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="583" y="12"/>
         </scene>
+        <!--Recipes-->
+        <scene sceneID="eDX-YY-VH7">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Recipes" id="HY4-kU-R44" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Recipes" image="fork.knife" catalog="system" id="4JZ-oA-bnW"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YNz-Qh-xpF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100" y="439"/>
+        </scene>
+        <!--Favourites-->
+        <scene sceneID="BI0-FS-In1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Favourites" id="ndA-Gg-xjW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favourites" image="heart.fill" catalog="system" id="ldP-FI-NbB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eHw-nO-hPD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="809" y="439"/>
+        </scene>
+        <!--Categories-->
+        <scene sceneID="ItF-ou-PmP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Categories" id="5Ts-vz-rvT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Categories" image="square.fill.on.circle.fill" catalog="system" id="SUj-wL-us1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KCJ-5G-39r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="355" y="439"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="BhY-30-ILJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="biv-kI-SVe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="xTw-kL-Jsg"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jW1-x0-mVu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1276" y="439"/>
+        </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="fork.knife" catalog="system" width="94" height="128"/>
+        <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="square.fill.on.circle.fill" catalog="system" width="128" height="118"/>
     </resources>
 </document>
