@@ -16,6 +16,14 @@
                     <view key="view" contentMode="scaleToFill" id="MBX-uv-auN">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Xag-No-Kon">
+                                <rect key="frame" x="0.0" y="761" width="390" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items/>
+                            </tabBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="gE9-Rq-No6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
