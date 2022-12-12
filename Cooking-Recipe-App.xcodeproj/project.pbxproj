@@ -15,6 +15,7 @@
 		3F1FF09D293DE15E00826C00 /* Favourites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1FF09C293DE15E00826C00 /* Favourites.storyboard */; };
 		3F1FF0A0293DE18600826C00 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1FF09E293DE18600826C00 /* Categories.storyboard */; };
 		3F1FF0A2293DE19600826C00 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1FF0A1293DE19600826C00 /* Settings.storyboard */; };
+		3F2C518829471CDB00CA1975 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2C518729471CDB00CA1975 /* Recipe.swift */; };
 		3FBB75D8293DD1DB00756A63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBB75D7293DD1DB00756A63 /* AppDelegate.swift */; };
 		3FBB75DA293DD1DB00756A63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBB75D9293DD1DB00756A63 /* SceneDelegate.swift */; };
 		3FBB75DF293DD1DB00756A63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FBB75DD293DD1DB00756A63 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 		3F1FF09C293DE15E00826C00 /* Favourites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Favourites.storyboard; sourceTree = "<group>"; };
 		3F1FF09F293DE18600826C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Categories.storyboard; sourceTree = "<group>"; };
 		3F1FF0A1293DE19600826C00 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = SOURCE_ROOT; };
+		3F2C518729471CDB00CA1975 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		3FBB75D4293DD1DB00756A63 /* Cooking-Recipe-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cooking-Recipe-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FBB75D7293DD1DB00756A63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FBB75D9293DD1DB00756A63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				3F1FF091293DE02000826C00 /* RecipesViewController.swift */,
+				3F2C518729471CDB00CA1975 /* Recipe.swift */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			files = (
 				3FBB75D8293DD1DB00756A63 /* AppDelegate.swift in Sources */,
 				3F1FF092293DE02000826C00 /* RecipesViewController.swift in Sources */,
+				3F2C518829471CDB00CA1975 /* Recipe.swift in Sources */,
 				3F1FF094293DE02900826C00 /* CategoriesViewController.swift in Sources */,
 				3F1FF096293DE03200826C00 /* FavouritesViewController.swift in Sources */,
 				3FBB75DA293DD1DB00756A63 /* SceneDelegate.swift in Sources */,
