@@ -47,6 +47,24 @@ extension Recipe {
                 "First prepare the choux pastry",
                 "Remove from heat",
             ]
+        ),
+        Recipe(
+            title: "Pancakes",
+            categories: ["Breakfast"],
+            source: "allrecipes.com",
+            yield: "1 piece",
+            preparationTime: TimeInterval(5*60),
+            cookingTime: TimeInterval(10*60),
+            ingredients: [
+            Ingredient(measurement: Measurement(value: 1.5, unit: UnitVolume.cups), text: "all purpose flour"),
+            Ingredient(measurement: Measurement(value: 3.5, unit: UnitVolume.teaspoons), text: "baking powder"),
+            Ingredient(measurement: Measurement(value: 1, unit: UnitVolume.tablespoons), text: "white sugar"),
+            Ingredient(measurement: Measurement(value: 0.25, unit: UnitVolume.teaspoons), text: "salt"),
+            Ingredient(measurement: Measurement(value: 1.25, unit: UnitVolume.cups), text: "milk"),
+            Ingredient(measurement: Measurement(value: 3, unit: UnitVolume.tablespoons), text: "butter, melted"),
+            Ingredient(measurement: Measurement(value: 1, unit: Unit(symbol: "")), text: "egg")
+            ],
+            directions: [""]
         )
     ]
 }

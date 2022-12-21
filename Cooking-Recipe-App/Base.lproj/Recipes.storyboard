@@ -16,6 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="128" id="UqX-Ng-1lW" customClass="RecipeTableViewCell" customModule="Cooking_Recipe_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="390" height="128"/>
@@ -44,9 +45,9 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q73-SU-rpz" customClass="Tags" customModule="Cooking_Recipe_App" customModuleProvider="target">
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q73-SU-rpz" customClass="Tags" customModule="Cooking_Recipe_App" customModuleProvider="target">
                                             <rect key="frame" x="20" y="79.666666666666671" width="234" height="48.333333333333329"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -66,6 +67,7 @@
                                         <constraint firstItem="dHN-Gi-LiH" firstAttribute="leading" secondItem="ZOs-8k-gft" secondAttribute="leading" constant="20" symbolic="YES" id="zeK-Yp-YAw"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="gc8-Ys-F8B" id="D2T-mA-04T"/>
                                     <outlet property="recipeImageView" destination="3dd-xO-TZx" id="9dU-Zg-crt"/>
@@ -79,6 +81,7 @@
                         <connections>
                             <outlet property="dataSource" destination="rdI-8Y-VWv" id="B7W-xm-GL6"/>
                             <outlet property="delegate" destination="rdI-8Y-VWv" id="cL1-oF-e0k"/>
+                            <outletCollection property="gestureRecognizers" destination="thv-l5-JRf" appends="YES" id="33F-Dm-Yan"/>
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Recipes" image="fork.knife" catalog="system" id="8qA-s4-SYk"/>
@@ -86,6 +89,11 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qPr-m6-UZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="thv-l5-JRf">
+                    <connections>
+                        <action selector="recipeLongPressed:" destination="rdI-8Y-VWv" id="Xk4-NK-4X0"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1067.6923076923076" y="186.96682464454975"/>
         </scene>

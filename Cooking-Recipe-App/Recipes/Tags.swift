@@ -10,6 +10,9 @@ import UIKit
 class Tags: UIView {
 
     func withTags(_ data:[String]) {
+        for v in subviews {
+            v.removeFromSuperview()
+        }
         var xPos:CGFloat = 0
         var ypos: CGFloat = 0
         var tag: Int = 1
