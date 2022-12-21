@@ -9,7 +9,7 @@ import UIKit
 
 class RecipesTableViewController: UITableViewController {
     
-    var recipes: [Recipe] = Recipe.sample_recipes
+    var recipes: [Recipe] = [Recipe].init(repeating: Recipe.sample_recipes[0], count: 10) 
 
     override func viewDidLoad() {
         super.viewDidLoad()

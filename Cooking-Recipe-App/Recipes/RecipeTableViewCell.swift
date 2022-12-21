@@ -12,6 +12,7 @@ class RecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var recipeImageView: UIImageView!
+    @IBOutlet var tags: Tags!
     
     func configure(forRecipe recipe: Recipe) {
         
@@ -21,6 +22,8 @@ class RecipeTableViewCell: UITableViewCell {
         if let image = UIImage(named: "zeppole") {
             recipeImageView.image = image
         }
+        
+        tags.withTags(recipe.categories)
         
     }
     
