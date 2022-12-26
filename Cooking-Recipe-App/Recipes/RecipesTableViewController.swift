@@ -13,20 +13,18 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     var filteredRecipes: [Recipe] = [Recipe]()
 
     let searchController = UISearchController()
+    let addButton = UIButton()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // setup searchbar
-        searchController.loadViewIfNeeded()
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.enablesReturnKeyAutomatically = false
-        searchController.searchBar.returnKeyType = .done
-        searchController.searchBar.delegate = self
-        definesPresentationContext = true
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+        searchBarInit()
+        
+        // floating add button
+        addButtonInit()
+
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -36,6 +34,18 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     }
     
     // MARK: - Search Results
+    
+    private func searchBarInit() {
+        searchController.loadViewIfNeeded()
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.enablesReturnKeyAutomatically = false
+        searchController.searchBar.returnKeyType = .done
+        searchController.searchBar.delegate = self
+        definesPresentationContext = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
     
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
@@ -85,6 +95,27 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
             
             self.present(alertController, animated: true)
         }
+    }
+    
+    private func addButtonInit() {
+        addButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        addButton.backgroundColor = .systemBlue
+        addButton.tintColor = .white
+        addButton.layer.cornerRadius = 25
+        addButton.layer.masksToBounds = false
+        addButton.layer.shadowRadius = 10
+        addButton.layer.shadowOpacity = 0.3
+        tableView.addSubview(addButton)
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
+        addButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
+        addButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
+    }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "Add Recipe", sender: nil)
     }
     /*
     // Override to support conditional editing of the table view.
