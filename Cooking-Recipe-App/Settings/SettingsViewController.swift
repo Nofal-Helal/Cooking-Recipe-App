@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class SettingsViewController: UIViewController {
 
@@ -58,8 +59,6 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderTitleCell") as! HeaderTitleCell
         cell.titles.font = UIFont.boldSystemFont(ofSize: 20)
-        cell.backgroundColor = .white
-        cell.contentView.backgroundColor = .white
         cell.titles.text = headers[section]
         return cell
     }
@@ -90,5 +89,52 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            let setTitle = sets[indexPath.row]
+            
+            let alertController = UIAlertController(title: "Measurement System", message: setTitle, preferredStyle: .actionSheet)
+            alertController.addAction(UIAlertAction(title: "US Customary Units", style: .default) { _ in })
+            alertController.addAction(UIAlertAction(title: "Metric", style: .default) { _ in })
+            alertController.addAction(UIAlertAction(title: "UK Imperial", style: .destructive) { _ in })
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            
+            self.present(alertController, animated: true)
+        case 1:
+            let setTitle = sets[indexPath.row]
+            
+            let alertController = UIAlertController(title: "Display Theme", message: setTitle, preferredStyle: .actionSheet)
+            alertController.addAction(UIAlertAction(title: "Light", style: .default) { _ in self.DisplayTheme(num: 1) })
+            alertController.addAction(UIAlertAction(title: "Dark", style: .default) { _ in self.DisplayTheme(num: 2)})
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            
+            self.present(alertController, animated: true)
+        case 2:
+            let setTitle = sets[indexPath.row]
+            
+            let alertController = UIAlertController(title: "Give US 5 STARS", message: setTitle, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
+            alertController.addAction(UIAlertAction(title: "NO", style: .default) { _ in })
+            
+            self.present(alertController, animated: true)
+        
+        default:
+            ()
+        }
+    }
+    
+    func DisplayTheme(num: Int){
+        
+        if(num == 1){
+            overrideUserInterfaceStyle = .light
+
+        }else if(num == 2){
+            overrideUserInterfaceStyle = .dark
+            
+        }
+            
+        
+    }
     
 }
