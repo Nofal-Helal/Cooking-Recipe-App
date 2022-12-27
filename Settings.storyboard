@@ -69,12 +69,16 @@
                             <constraint firstItem="DK2-l1-Fd6" firstAttribute="top" secondItem="Yzb-Mx-qiJ" secondAttribute="top" constant="40" id="KfO-Rx-bHG"/>
                             <constraint firstItem="eeB-1T-IOI" firstAttribute="top" secondItem="QM0-UX-Vv9" secondAttribute="bottom" id="Knh-wh-DfF"/>
                             <constraint firstItem="DK2-l1-Fd6" firstAttribute="leading" secondItem="Yzb-Mx-qiJ" secondAttribute="leading" constant="154" id="O57-4h-D8p"/>
+                            <constraint firstItem="Yzb-Mx-qiJ" firstAttribute="trailing" secondItem="DK2-l1-Fd6" secondAttribute="trailing" constant="154" id="YOJ-am-uwr"/>
                             <constraint firstItem="QM0-UX-Vv9" firstAttribute="top" secondItem="Yzb-Mx-qiJ" secondAttribute="top" constant="98" id="ZCk-CO-5Ax"/>
                             <constraint firstItem="QM0-UX-Vv9" firstAttribute="leading" secondItem="Yzb-Mx-qiJ" secondAttribute="leading" id="ufU-qn-xQU"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="PsI-8o-cMk"/>
                     <navigationItem key="navigationItem" title="Settings" largeTitleDisplayMode="always" id="NEu-KF-eEI"/>
+                    <connections>
+                        <outlet property="tableView" destination="QM0-UX-Vv9" id="Hna-cX-bMt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DsF-Nz-3ev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
