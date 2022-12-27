@@ -14,10 +14,16 @@ class IngredientsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // add observers for keyboard events
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
+        keyboardAccessoryInit()
+        
+    }
+    
+    fileprivate func keyboardAccessoryInit() {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         let inputView = UIInputView(frame: frame, inputViewStyle: .keyboard)
         let scrollView = UIScrollView(frame: frame)
@@ -55,6 +61,7 @@ class IngredientsViewController: UIViewController {
         
     }
     
+    // adjust text view inset when the keyboard is shown
     @objc func adjustForKeyboard(notification: Notification) {
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
 
