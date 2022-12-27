@@ -162,4 +162,9 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     }
     */
 
+    @IBSegueAction func viewRecipeDetails(_ coder: NSCoder, sender: RecipeTableViewCell!) -> UIViewController? {
+        guard let indexPath = tableView.indexPath(for: sender) else {return nil}
+        let recipe = recipes[indexPath.row]
+        return RecipeDetailViewController(coder: coder, recipe: recipe)
+    }
 }
