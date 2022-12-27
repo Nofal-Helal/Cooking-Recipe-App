@@ -68,6 +68,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="hKX-UA-iKq" appends="YES" id="aVx-Lp-SdN"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -94,7 +98,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DsF-Nz-3ev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Ox0-cf-LJp"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="hKX-UA-iKq"/>
             </objects>
             <point key="canvasLocation" x="2813.8461538461538" y="382.46445497630327"/>
         </scene>
