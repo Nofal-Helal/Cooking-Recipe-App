@@ -14,6 +14,10 @@ class IngredientsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         let inputView = UIInputView(frame: frame, inputViewStyle: .keyboard)
         let scrollView = UIScrollView(frame: frame)
@@ -51,5 +55,22 @@ class IngredientsViewController: UIViewController {
         
     }
     
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            ingredientsTextView.contentInset = .zero
+        } else {
+            ingredientsTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+        }
+
+        ingredientsTextView.scrollIndicatorInsets = ingredientsTextView.contentInset
+
+        let selectedRange = ingredientsTextView.selectedRange
+        ingredientsTextView.scrollRangeToVisible(selectedRange)
+    }
 
 }
