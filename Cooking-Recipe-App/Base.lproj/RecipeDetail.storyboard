@@ -11,7 +11,7 @@
         <!--Recipe Detail View Controller-->
         <scene sceneID="Mdf-Am-dv3">
             <objects>
-                <viewController id="cLE-Wd-bnE" customClass="RecipeDetailViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="cLE-Wd-bnE" customClass="RecipeDetailViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dIh-pW-jQ3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
