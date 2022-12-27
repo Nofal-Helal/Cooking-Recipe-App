@@ -20,6 +20,8 @@ class OverviewTableViewController: UITableViewController, UIImagePickerControlle
     @IBOutlet var recipeImageView: UIImageView!
     @IBOutlet var cameraIcon: UIImageView!
     
+    let numberRegex = try! NSRegularExpression(pattern: #"\d+(\.\d+){0,1}"#)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,11 +30,23 @@ class OverviewTableViewController: UITableViewController, UIImagePickerControlle
     }
 
     @IBAction func stepperPressed(_ sender: UIStepper) {
-        yieldField.text = sender.value.formatted(.number)
+        // replace the text field text with the value in the stepper
+        guard let text = yieldField.text else {return}
+        let mutableText = NSMutableString(string: text)
+        if numberRegex.replaceMatches(in: mutableText, range: NSRange(text.startIndex..., in: text), withTemplate: sender.value.formatted(.number)) > 0 {
+            yieldField.text = String(mutableText)
+        } else {
+            yieldField.text = sender.value.formatted(.number)
+        }
     }
     
     @IBAction func yieldEdited(_ sender: UITextField) {
-        yieldStepper.value = (try? Double(yieldField.text ?? "0", format: .number)) ?? yieldStepper.value
+        // store first number in the text field as the value in the stepper
+        guard let text = yieldField.text else {return}
+        if let numberNSRange = numberRegex.firstMatch(in: text, range: NSRange(text.startIndex..., in: text))?.range(at: 0),
+           let numberRange = Range(numberNSRange, in: text) {
+            yieldStepper.value = (try? Double(String(text[numberRange]), format: .number)) ?? yieldStepper.value
+        }
     }
     
     
