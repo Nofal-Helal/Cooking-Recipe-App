@@ -35,7 +35,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         case 0:
             return sets.count
         default:
-            return 1
+            return 0
         }
     }
     
@@ -44,13 +44,14 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         cell.titles.font = UIFont.systemFont(ofSize: 15)
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
-        
+        cell.tag = indexPath.row
         switch indexPath.section {
         case 0:
             cell.titles.text = sets[indexPath.row]
         default:
-            cell.titles.text = sets[indexPath.row]
+            return UITableViewCell()
         }
+
         return cell
     }
     
@@ -88,4 +89,6 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             return 20
         }
     }
+    
+    
 }
