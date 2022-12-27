@@ -253,21 +253,32 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zeppole" translatesAutoresizingMaskIntoConstraints="NO" id="wsX-dx-wrT">
-                                                    <rect key="frame" x="20" y="11" width="64" height="64"/>
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zeppole" translatesAutoresizingMaskIntoConstraints="NO" id="wsX-dx-wrT">
+                                                    <rect key="frame" x="20" y="11" width="63" height="64"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="64" id="45V-7U-tYm"/>
                                                         <constraint firstAttribute="width" secondItem="wsX-dx-wrT" secondAttribute="height" multiplier="1:1" id="I9V-H5-33g"/>
                                                         <constraint firstAttribute="width" constant="64" id="dPx-kC-p1G"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="CFz-Nx-vB6" appends="YES" id="oM0-2E-9Ki"/>
+                                                    </connections>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.fill.badge.ellipsis" catalog="system" id="J8l-ot-6Ff">
+                                                    <rect key="frame" x="61" y="51.333332061767578" width="22" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" systemColor="labelColor"/>
+                                                    <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                                                 </imageView>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYk-hz-vhp">
-                                                    <rect key="frame" x="92" y="41" width="278" height="34"/>
+                                                    <rect key="frame" x="91" y="41" width="279" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECIPE TITLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Fk-vl-5O4">
-                                                    <rect key="frame" x="92" y="17.333333333333332" width="278" height="15.666666666666668"/>
+                                                    <rect key="frame" x="91" y="17.333333333333332" width="279" height="15.666666666666668"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -277,9 +288,11 @@
                                                 <constraint firstItem="wsX-dx-wrT" firstAttribute="leading" secondItem="Z6q-6V-9El" secondAttribute="leading" constant="20" symbolic="YES" id="1Qb-k4-hBN"/>
                                                 <constraint firstItem="ZYk-hz-vhp" firstAttribute="top" secondItem="1Fk-vl-5O4" secondAttribute="bottom" constant="8" symbolic="YES" id="52c-Df-Wwu"/>
                                                 <constraint firstAttribute="trailing" secondItem="1Fk-vl-5O4" secondAttribute="trailing" constant="20" symbolic="YES" id="5f6-CP-Bu9"/>
+                                                <constraint firstItem="J8l-ot-6Ff" firstAttribute="leading" secondItem="wsX-dx-wrT" secondAttribute="trailing" constant="-22" id="5fJ-Cb-DTv"/>
                                                 <constraint firstItem="1Fk-vl-5O4" firstAttribute="leading" secondItem="wsX-dx-wrT" secondAttribute="trailing" constant="8" symbolic="YES" id="7Z8-1D-qqr"/>
                                                 <constraint firstItem="ZYk-hz-vhp" firstAttribute="bottom" secondItem="wsX-dx-wrT" secondAttribute="bottom" id="D82-kA-nvm"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZYk-hz-vhp" secondAttribute="trailing" constant="20" symbolic="YES" id="Epx-qu-AfK"/>
+                                                <constraint firstItem="J8l-ot-6Ff" firstAttribute="bottom" secondItem="wsX-dx-wrT" secondAttribute="bottom" id="JuN-fN-TdS"/>
                                                 <constraint firstItem="wsX-dx-wrT" firstAttribute="top" secondItem="Z6q-6V-9El" secondAttribute="top" constant="11" id="bIS-pz-RaT"/>
                                                 <constraint firstItem="ZYk-hz-vhp" firstAttribute="leading" secondItem="wsX-dx-wrT" secondAttribute="trailing" constant="8" symbolic="YES" id="ltj-Fg-BHB"/>
                                             </constraints>
@@ -489,9 +502,11 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="cameraIcon" destination="J8l-ot-6Ff" id="aQt-dz-kKu"/>
                         <outlet property="cookingTimePicker" destination="Ncz-Ve-fmA" id="uFM-Nq-R0J"/>
                         <outlet property="descriptionTextView" destination="yCv-Wh-2xL" id="9fT-DX-UVv"/>
                         <outlet property="preparationTimePicker" destination="Ncz-Ve-fmA" id="Uq0-hr-ZAY"/>
+                        <outlet property="recipeImageView" destination="wsX-dx-wrT" id="ri5-nc-glU"/>
                         <outlet property="recipeTitleField" destination="ZYk-hz-vhp" id="haU-UY-dWj"/>
                         <outlet property="sourceField" destination="dP3-Ki-SQK" id="5eC-3S-Lze"/>
                         <outlet property="yieldField" destination="6vz-1p-W9s" id="3Gy-LB-9xs"/>
@@ -499,6 +514,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCC-JT-EXt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="CFz-Nx-vB6">
+                    <connections>
+                        <action selector="recipeImagePressed:" destination="rla-tt-I3L" id="zvR-nQ-uNp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="6.1538461538461533" y="1635.7819905213269"/>
         </scene>
@@ -522,6 +542,7 @@
         <segue reference="TUC-On-Yuz"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="camera.fill.badge.ellipsis" catalog="system" width="128" height="94"/>
         <image name="fork.knife" catalog="system" width="94" height="128"/>
         <image name="zeppole" width="750" height="750"/>
         <systemColor name="labelColor">
