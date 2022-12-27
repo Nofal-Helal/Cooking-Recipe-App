@@ -204,7 +204,7 @@
         <!--Ingredients-->
         <scene sceneID="rfo-5A-YLk">
             <objects>
-                <viewController title="Ingredients" keyboardType="on" id="xpX-et-Pfy" customClass="IngredientsViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Ingredients" keyboardType="on" id="xpX-et-Pfy" customClass="RecipeTextEditingViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Efd-aB-fHf">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="680"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -228,7 +228,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ingredientsTextView" destination="v6g-y9-z6y" id="Nad-20-yQJ"/>
+                        <outlet property="textView" destination="v6g-y9-z6y" id="Nad-20-yQJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVS-n9-hDL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -239,7 +239,7 @@
         <scene sceneID="zJH-Le-Vmr">
             <objects>
                 <tableViewController id="rla-tt-I3L" userLabel="Overview" customClass="OverviewTableViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="bSD-bo-HN0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" id="bSD-bo-HN0">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="680"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -525,13 +525,32 @@
         <!--Directions-->
         <scene sceneID="4OG-GO-MlH">
             <objects>
-                <viewController title="Directions" id="Ii2-Y8-7rx" sceneMemberID="viewController">
+                <viewController title="Directions" keyboardType="on" id="Ii2-Y8-7rx" customClass="RecipeTextEditingViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="odY-pN-hzM">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="680"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TVb-xD-suf">
+                                <rect key="frame" x="16" y="47" width="358" height="633"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="hy9-EG-iKO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TVb-xD-suf" firstAttribute="leading" secondItem="hy9-EG-iKO" secondAttribute="leading" constant="16" id="AOi-gx-hxs"/>
+                            <constraint firstItem="hy9-EG-iKO" firstAttribute="bottom" secondItem="TVb-xD-suf" secondAttribute="bottom" id="cve-Rq-cC3"/>
+                            <constraint firstItem="TVb-xD-suf" firstAttribute="top" secondItem="hy9-EG-iKO" secondAttribute="top" id="nE3-FX-ryX"/>
+                            <constraint firstItem="hy9-EG-iKO" firstAttribute="trailing" secondItem="TVb-xD-suf" secondAttribute="trailing" constant="16" id="zeC-um-oHl"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="TVb-xD-suf" id="YXB-2o-3G0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boT-ye-guS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
