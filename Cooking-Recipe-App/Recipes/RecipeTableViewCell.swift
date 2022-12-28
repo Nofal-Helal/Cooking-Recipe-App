@@ -19,8 +19,8 @@ class RecipeTableViewCell: UITableViewCell {
         titleLabel.text = recipe.title
         descriptionLabel.text = recipe.description
         
-        if let image = UIImage(named: "zeppole") {
-            recipeImageView.image = image
+        if let image = recipe.image {
+            recipeImageView.image = UIImage(data: image)
         }
         
         var p = [NSAttributedString]()

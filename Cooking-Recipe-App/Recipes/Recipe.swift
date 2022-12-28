@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit.UIImage
 
 
 struct Recipe : Codable {
@@ -37,7 +38,9 @@ extension Ingredient {
     
     // Create an instance of Ingredient by parsing text
     init?(fromLine line: String) {
-        let ingredientRegex = try! NSRegularExpression(pattern: #"((?:\d+(?:\.\d+){0,1}){0,1}\s*[¼½¾⅓⅔]{0,1}){0,1}\s*(tsp|tbsp|cups|cup|lb|oz|kg|g|ml|l){0,1}\s+(.*)$"#)
+        let ingredientRegex = try! NSRegularExpression(
+            pattern: #"((?:\d+(?:\.\d+){0,1}){0,1}\s*[¼½¾⅓⅔]{0,1}){0,1}\s*(tsp|tbsp|cups|cup|lb|oz|kg|g|ml|l){0,1}\s+(.*)$"#,
+            options: .caseInsensitive)
         guard let match = ingredientRegex.firstMatch(in: line, range: NSRange(line.startIndex..., in: line)) else {return nil}
         
         let valueString = match.matchAt(1, forString: line)
@@ -47,7 +50,7 @@ extension Ingredient {
         if valueString == nil {
             self.measurement = nil
         } else {
-            let unit = unitString == nil || unitString!.isEmpty ? Count.count : Ingredient.symbolToUnit(unitString!)
+            let unit = unitString == nil || unitString!.isEmpty ? Count.count : Ingredient.symbolToUnit(unitString!.lowercased())
             self.measurement = Measurement(value: Ingredient.parseFractionalNumber(valueString!), unit: unit!)
         }
         self.text = text ?? ""
@@ -142,6 +145,7 @@ extension Recipe {
             preparationTime: TimeInterval(60*30),
             cookingTime: TimeInterval(60*35),
             description: "Traditional Italian Dessert",
+            image: UIImage(named: "zeppole")!.pngData(),
             ingredients: [
                 Ingredient(fromLine: "4 oz butter")!,
                 Ingredient(fromLine: "1.5tsp sugar")!,
@@ -176,6 +180,7 @@ extension Recipe {
             yield: "8 pankakes",
             preparationTime: TimeInterval(5*60),
             cookingTime: TimeInterval(10*60),
+            image: UIImage(named: "pancake")!.pngData(),
             ingredients: [
                 Ingredient(fromLine: "1.5 cups all purpose flour")!,
                 Ingredient(fromLine: "3.5 tsp baking powder")!,
@@ -205,6 +210,7 @@ extension Recipe {
             yield: "3 servings",
             preparationTime: TimeInterval(15*60),
             cookingTime: TimeInterval(20*60),
+            image: UIImage(named: "beef-broccoli")!.pngData(),
             ingredients: [
                 Ingredient(fromLine: "0.5 lb Beef, cut into strips")!,
                 Ingredient(fromLine: "2 tbsp Vegetable oil")!,
@@ -224,6 +230,67 @@ extension Recipe {
                 "Remove vegetables to a bowl. Add bouillon, salt and pepper to meat.",
                 "Combine corn starch, 2 Tbsp water, and soy sauce. Add to meat to thicken sauce.",
                 "Add vegetables and heat. Serve over rice.",
+            ]
+        ),
+        Recipe(
+            title: "Tabouleh",
+            categories: ["Mediterranean", "Salad"],
+            source: "based.cooking",
+            yield: "12",
+            preparationTime: TimeInterval(15*60),
+            cookingTime: TimeInterval(30*60),
+            description: "Traditional Mediterranean Salad",
+            image: UIImage(named: "tabouleh")!.pngData(),
+            ingredients: [
+                Ingredient(fromLine:"2 cups Cracked Wheat (bulghur)")!,
+                Ingredient(fromLine:"2 cups Very Hot Water (or as directed)")!,
+                Ingredient(fromLine:"1 Cucumber, chopped")!,
+                Ingredient(fromLine:"2 small Tomatoes, chopped")!,
+                Ingredient(fromLine:"1 bunch Green Onions, sliced")!,
+                Ingredient(fromLine:"½ cup Mint (fresh), chopped")!,
+                Ingredient(fromLine:"2 cup Parsley (fresh), chopped")!,
+                Ingredient(fromLine:"1 clove Garlic, minced")!,
+                Ingredient(fromLine:"½ cup Lemon Juice (fresh)")!,
+                Ingredient(fromLine:"¾ cup Olive Oil")!,
+                Ingredient(fromLine:"1 Tbsp Pepper")!,
+                Ingredient(fromLine:"2 tsp Salt")!,
+            ],
+            directions: [
+                "Soak the cracked wheat in the hot water until the water is absorbed, about 30 minutes.",
+                "Drain any excess water, if necessary, and squeeze dry.",
+                "Combine the salad ingredients (all but the oil, lemon juice, salt and pepper dressing ingredients) in a medium bowl.",
+                "Mix the dressing ingredients together and stir into the salad mix",
+                "Serve chilled or at room temperature.",
+            ]
+        ),
+        Recipe(
+            title: "Tomato and Grilled Bell Pepper Soup",
+            categories: ["Soup", "Hot Starters"],
+            source: "based.cooking",
+            yield: "12",
+            preparationTime: TimeInterval(10*60),
+            cookingTime: TimeInterval(30*60),
+            image: UIImage(named: "tomato-soup")!.pngData(),
+            ingredients: [
+                Ingredient(fromLine: "10 tomatoes")!,
+                Ingredient(fromLine: "2 red bell peppers")!,
+                Ingredient(fromLine: "2 onions")!,
+                Ingredient(fromLine: "1 clove of garlic")!,
+                Ingredient(fromLine: "1L stock or broth")!,
+                Ingredient(fromLine: "¾ tsp Cayenne pepper")!,
+                Ingredient(fromLine: "1tsp paprika powder")!,
+                Ingredient(fromLine: "3tsp bruschetta herbs")!,
+                Ingredient(fromLine: "1tsp oregano")!,
+                Ingredient(fromLine: "1tsp giner syrup")!,
+                Ingredient(fromLine: "2Tbsp olive oil")!,
+                Ingredient(fromLine: "2Tbsp heavy cream")!,
+            ],
+            directions: [
+                "Halve, deseed and grill the bell peppers in an oven or on a grill. Remove skin after grilling.",
+                "Skin and quarter tomatoes.",
+                "Sauté onion and crushed garlic in a large soup pan with olive oil.",
+                "Add broth/stock, tomatoes, bell paper and purée with a stick blender.",
+                "Add spices, syrup and cream.",
             ]
         ),
     ]
