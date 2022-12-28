@@ -39,16 +39,16 @@
                                 <items/>
                             </tabBar>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="DK2-l1-Fd6">
-                                <rect key="frame" x="129" y="180" width="131.33333333333337" height="26.333333333333343"/>
+                                <rect key="frame" x="129" y="180" width="99" height="20.333333333333343"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djb-Bx-nKK">
-                                        <rect key="frame" x="0.0" y="0.0" width="101.33333333333333" height="26.333333333333332"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="UserName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekP-k8-qI1">
+                                        <rect key="frame" x="0.0" y="0.0" width="69" height="20.333333333333332"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rS4-us-gAR">
-                                        <rect key="frame" x="110.33333333333334" y="0.33333333333333215" width="21" height="24.666666666666668"/>
+                                        <rect key="frame" x="78" y="0.33333333333333215" width="21" height="18.666666666666668"/>
                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                 </subviews>
@@ -77,12 +77,6 @@
                                     <outlet property="delegate" destination="cXo-Vr-Uc4" id="wmj-5v-jqd"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekP-k8-qI1">
-                                <rect key="frame" x="103" y="147" width="183" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yzb-Mx-qiJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -100,7 +94,6 @@
                     <connections>
                         <outlet property="tableView" destination="QM0-UX-Vv9" id="Hna-cX-bMt"/>
                         <outlet property="textF" destination="ekP-k8-qI1" id="Rug-ei-Zvb"/>
-                        <outlet property="userName" destination="djb-Bx-nKK" id="QRc-7e-WlO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DsF-Nz-3ev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

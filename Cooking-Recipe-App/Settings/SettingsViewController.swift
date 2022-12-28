@@ -11,11 +11,10 @@ import Foundation
 class SettingsViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var userName: UILabel!
     @IBOutlet var textF: UITextField!
     var headers = ["Settings","Stay toned"]
     var sets = ["Measurement System","Display Theme","Rate US"]
-    var n: [Int] = []
+    var n: [Int] = [55,55,55]
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,21 +26,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     func registerTableCells(){
         tableView.register(UINib(nibName: "HeaderTitleCell", bundle: nil), forCellReuseIdentifier: "HeaderTitleCell")
     }
-    
-    func ImageTapped() {
-        userName.isHidden = true
-                textF.isHidden = false
-                textF.text = userName.text
-    }
-    func textFieldShouldReturn(userText: UITextField) -> Bool {
-            userText.resignFirstResponder()
-            textF.isHidden = true
-            userName.isHidden = false
-            userName.text = textF.text
-            return true
-        }
-    
-    
 
 }
 
@@ -154,11 +138,11 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             let appDelegate = UIApplication.shared.windows.first
             if(num == 1){
                 appDelegate?.overrideUserInterfaceStyle = .light
-                n[0] = 1
+                //n[0] = 1
                 return
             }else if(num == 2){
                 appDelegate?.overrideUserInterfaceStyle = .dark
-                n[0] = 2
+                //n[0] = 2
                 return
             }
         }
@@ -166,11 +150,11 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     // for measurement system
     func measurementSys(num: Int){
         if(num == 1){
-            n[1] = 1
+            //n[1] = 1
         }else if (num == 2){
-            n[1] = 2
+            //n[1] = 2
         }else if (num == 3){
-            n[1] = 3
+            //n[1] = 3
         }
     }
     //creating fileManager
