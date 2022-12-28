@@ -23,7 +23,11 @@ class RecipeTableViewCell: UITableViewCell {
             recipeImageView.image = image
         }
         
-        tags.withTags(recipe.categories)
+        var p = [NSAttributedString]()
+        p.append(Tags.timeTag(recipe.preparationTime + recipe.cookingTime))
+        p.append(contentsOf: recipe.categories.map(Tags.normalTag(_:)))
+        p.append(Tags.sourceTag(recipe.source))
+        tags.withTags(p)
         
     }
     

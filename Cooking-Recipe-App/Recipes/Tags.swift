@@ -9,7 +9,7 @@ import UIKit
 
 class Tags: UIView {
 
-    func withTags(_ data:[String]) {
+    func withTags(_ data:[NSAttributedString]) {
         for v in subviews {
             v.removeFromSuperview()
         }
@@ -17,10 +17,8 @@ class Tags: UIView {
         var ypos: CGFloat = 0
         var tag: Int = 1
         for str in data  {
-            let startstring = str as NSString
-            let font = UIFont(name: "Helvetica Neue", size: 13)
-            let attributes = [NSAttributedString.Key.font: font]
-            let width = startstring.size(withAttributes: attributes as [NSAttributedString.Key : Any]).width
+            let hasAttachments = str.containsAttachments(in: NSRange(location: 0, length: 1))
+            let width = ceil(str.size().width) + (hasAttachments ? 8 : 0)
             if (xPos + width + CGFloat(17.0)) > self.frame.width  - 30.0 {
                 //we are exceeding size need to change xpos
                 xPos = 0
@@ -35,7 +33,7 @@ class Tags: UIView {
             
             let textlable = UILabel(frame: CGRect(x: 17.0/2, y: 0.0, width: width, height: bgView.frame.size.height))
             textlable.font = UIFont(name: "Helvetica Neue", size: 13.0)
-            textlable.text = (startstring as String)
+            textlable.attributedText = str
             textlable.textColor = UIColor.label
             bgView.addSubview(textlable)
             
@@ -56,5 +54,42 @@ class Tags: UIView {
           
        }
     
+    class func normalTag(_ str: String) -> NSAttributedString {
+        return NSAttributedString(string: str, attributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)
+        ])
+    }
+    
+    class func timeTag(_ timeInterval: TimeInterval) -> NSAttributedString {
+        let imgAttachment = NSTextAttachment()
+        imgAttachment.image = UIImage(systemName: "stopwatch",
+                                      withConfiguration: UIImage.SymbolConfiguration(pointSize: 10)
+                                     )?.withTintColor(.label)
+        
+        let (hour, minute) = Int(timeInterval).quotientAndRemainder(dividingBy: 3600)
+        let hourString = hour == 0 ? "" : " \(hour)H"
+        let minuteString = minute/60 == 0 && hour != 0 ? "" : " \(minute/60)M"
+        
+        let str = NSMutableAttributedString(string: "", attributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)
+        ])
+        str.append(NSAttributedString(attachment: imgAttachment))
+        str.append(NSAttributedString(string: hourString + minuteString))
+        return str
+    }
+    
+    class func sourceTag(_ source: String) -> NSAttributedString {
+        let imgAttachment = NSTextAttachment()
+        imgAttachment.image = UIImage(systemName: "person",
+                                      withConfiguration: UIImage.SymbolConfiguration(pointSize: 10)
+                                     )?.withTintColor(.label)
+        
+        let str = NSMutableAttributedString(string: "", attributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)
+        ])
+        str.append(NSAttributedString(attachment: imgAttachment))
+        str.append(NSAttributedString(string: " " + source))
+        return str
+    }
     
 }

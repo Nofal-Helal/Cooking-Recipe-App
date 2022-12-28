@@ -137,7 +137,7 @@ extension Recipe {
         Recipe(
             title: "Zeppole di San Giuseppe",
             categories: ["Italian", "Dessert"],
-            source: "Cristene",
+            source: "Christina Conte",
             yield: "12 pieces",
             preparationTime: TimeInterval(60*30),
             cookingTime: TimeInterval(60*35),
