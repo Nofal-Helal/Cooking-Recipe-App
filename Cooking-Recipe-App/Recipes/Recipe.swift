@@ -109,11 +109,7 @@ class Count: Unit {
 extension Recipe {
     static var archiveURL: URL {
         var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        if #available(iOS 16.0, *) {
-            documentsURL.append(component: "recipes.plist")
-        } else {
-            documentsURL.appendPathComponent("recipes.plist")
-        }
+        documentsURL.appendPathComponent("recipes.plist")
         return documentsURL
     }
     
