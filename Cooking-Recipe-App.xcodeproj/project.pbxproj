@@ -38,9 +38,9 @@
 		3F1FF095293DE03200826C00 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		3F1FF097293DE03800826C00 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F1FF09A293DE14B00826C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Recipes.storyboard; sourceTree = "<group>"; };
-		3F1FF09C293DE15E00826C00 /* Favourites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Favourites.storyboard; sourceTree = "<group>"; };
+		3F1FF09C293DE15E00826C00 /* Favourites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Favourites.storyboard; path = Base.lproj/Favourites.storyboard; sourceTree = "<group>"; };
 		3F1FF09F293DE18600826C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Categories.storyboard; sourceTree = "<group>"; };
-		3F1FF0A1293DE19600826C00 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = SOURCE_ROOT; };
+		3F1FF0A1293DE19600826C00 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = "Cooking-Recipe-App/Base.lproj/Settings.storyboard"; sourceTree = SOURCE_ROOT; };
 		3F2C518729471CDB00CA1975 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		3F2D7021295995AE0090CD36 /* RecipeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeEditorViewController.swift; sourceTree = "<group>"; };
 		3F31EDCC2959B7A1007FA31F /* OverviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTableViewController.swift; sourceTree = "<group>"; };
@@ -148,8 +148,8 @@
 				3F62FD86295AD2A7004365A7 /* RecipeDetailViewController.swift */,
 				3F1FF0A1293DE19600826C00 /* Settings.storyboard */,
 				3F1FF09E293DE18600826C00 /* Categories.storyboard */,
-				3F1FF09C293DE15E00826C00 /* Favourites.storyboard */,
 				3F1FF099293DE14B00826C00 /* Recipes.storyboard */,
+				3F1FF09C293DE15E00826C00 /* Favourites.storyboard */,
 				3F1FF090293DDFFE00826C00 /* Settings */,
 				3F1FF08F293DDFF600826C00 /* Favourites */,
 				3F1FF08D293DDFE600826C00 /* Categories */,
