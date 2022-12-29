@@ -119,24 +119,22 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     }
 
     // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    var recipesSource: [Recipe] {
         if searchController.isActive {
-            return filteredRecipes.count
+            return filteredRecipes
+        } else {
+            return recipes
         }
-        return recipes.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recipesSource.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! RecipeTableViewCell
         // Configure the cell...
-        let recipe: Recipe!
-        if searchController.isActive {
-            recipe = filteredRecipes[indexPath.row]
-        } else {
-            recipe = recipes[indexPath.row]
-        }
-        
+        let recipe = recipesSource[indexPath.row]
         cell.configure(forRecipe: recipe)
         
         return cell
@@ -145,7 +143,8 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     @IBAction func recipeLongPressed(_ gestureRecognizer: UILongPressGestureRecognizer) {
         let indexPath = tableView.indexPathForRow(at: gestureRecognizer.location(in: tableView))
         if indexPath != nil && gestureRecognizer.state == .began {
-            let recipeTitle = recipes[indexPath!.row].title
+            let indexPath = indexPath!
+            let recipeTitle = recipesSource[indexPath.row].title
             
             let alertController = UIAlertController(title: "Recipe Action", message: recipeTitle, preferredStyle: .actionSheet)
             alertController.addAction(UIAlertAction(title: "Favourite Recipe", style: .default) { _ in })
