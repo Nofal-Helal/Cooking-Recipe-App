@@ -10,6 +10,7 @@ import UIKit
 class OverviewTableViewController: UITableViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     @IBOutlet var recipeTitleField: UITextField!
+    @IBOutlet var categoriesLabel: UILabel!
     @IBOutlet var sourceField: UITextField!
     @IBOutlet var yieldField: UITextField!
     @IBOutlet var yieldStepper: UIStepper!

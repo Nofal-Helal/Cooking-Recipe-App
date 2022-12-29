@@ -91,7 +91,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="y1u-TE-Y1H" kind="show" identifier="Add Recipe" id="TUC-On-Yuz"/>
-                        <segue destination="y1u-TE-Y1H" kind="show" identifier="Edit Item" id="Ql1-0p-F6T"/>
+                        <segue destination="y1u-TE-Y1H" kind="show" identifier="Edit Recipe" destinationCreationSelector="editRecipe:sender:" id="Ql1-0p-F6T"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qPr-m6-UZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -152,19 +152,19 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3t-cT-jQn" userLabel="Overview">
                                 <rect key="frame" x="0.0" y="130" width="390" height="680"/>
                                 <connections>
-                                    <segue destination="rla-tt-I3L" kind="embed" id="Wbz-yT-KlF"/>
+                                    <segue destination="rla-tt-I3L" kind="embed" identifier="embed overview" destinationCreationSelector="embedOverview:" id="Wbz-yT-KlF"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7o-td-MP8" userLabel="Ingredients">
                                 <rect key="frame" x="0.0" y="130" width="390" height="680"/>
                                 <connections>
-                                    <segue destination="xpX-et-Pfy" kind="embed" id="t76-Dn-bx5"/>
+                                    <segue destination="xpX-et-Pfy" kind="embed" identifier="embed ingredients" destinationCreationSelector="embedIngredients:" id="t76-Dn-bx5"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Z7-KV-zct" userLabel="Directions">
                                 <rect key="frame" x="0.0" y="130" width="390" height="680"/>
                                 <connections>
-                                    <segue destination="Ii2-Y8-7rx" kind="embed" id="hJC-bx-OcH"/>
+                                    <segue destination="Ii2-Y8-7rx" kind="embed" identifier="embed directions" destinationCreationSelector="embedDirections:" id="hJC-bx-OcH"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -212,7 +212,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="v6g-y9-z6y">
                                 <rect key="frame" x="16" y="47" width="358" height="633"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -253,7 +252,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zeppole" translatesAutoresizingMaskIntoConstraints="NO" id="wsX-dx-wrT">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="wsX-dx-wrT">
                                                     <rect key="frame" x="20" y="11" width="63" height="64"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
@@ -309,7 +308,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrV-wg-dWH">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrV-wg-dWH">
                                                     <rect key="frame" x="20" y="11.333333333333336" width="332" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -479,7 +478,6 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yCv-Wh-2xL">
                                                     <rect key="frame" x="20" y="11" width="354" height="128"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -503,9 +501,10 @@
                     </tableView>
                     <connections>
                         <outlet property="cameraIcon" destination="J8l-ot-6Ff" id="aQt-dz-kKu"/>
+                        <outlet property="categoriesLabel" destination="IrV-wg-dWH" id="D80-mW-0eg"/>
                         <outlet property="cookingTimePicker" destination="Ncz-Ve-fmA" id="uFM-Nq-R0J"/>
                         <outlet property="descriptionTextView" destination="yCv-Wh-2xL" id="9fT-DX-UVv"/>
-                        <outlet property="preparationTimePicker" destination="Ncz-Ve-fmA" id="Uq0-hr-ZAY"/>
+                        <outlet property="preparationTimePicker" destination="msP-5F-06U" id="lkX-wm-WM6"/>
                         <outlet property="recipeImageView" destination="wsX-dx-wrT" id="ri5-nc-glU"/>
                         <outlet property="recipeTitleField" destination="ZYk-hz-vhp" id="haU-UY-dWj"/>
                         <outlet property="sourceField" destination="dP3-Ki-SQK" id="5eC-3S-Lze"/>
@@ -533,7 +532,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TVb-xD-suf">
                                 <rect key="frame" x="16" y="47" width="358" height="633"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -558,12 +556,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TUC-On-Yuz"/>
+        <segue reference="Ql1-0p-F6T"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.fill.badge.ellipsis" catalog="system" width="128" height="94"/>
         <image name="fork.knife" catalog="system" width="94" height="128"/>
-        <image name="zeppole" width="750" height="750"/>
+        <image name="placeholder" width="625" height="625"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

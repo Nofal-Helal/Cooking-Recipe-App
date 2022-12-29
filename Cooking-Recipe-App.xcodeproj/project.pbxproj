@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F1FF094293DE02900826C00 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FF093293DE02900826C00 /* CategoriesViewController.swift */; };
 		3F1FF096293DE03200826C00 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FF095293DE03200826C00 /* FavouritesViewController.swift */; };
 		3F1FF098293DE03800826C00 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FF097293DE03800826C00 /* SettingsViewController.swift */; };
 		3F1FF09B293DE14B00826C00 /* Recipes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1FF099293DE14B00826C00 /* Recipes.storyboard */; };
@@ -36,7 +35,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F1FF093293DE02900826C00 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		3F1FF095293DE03200826C00 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		3F1FF097293DE03800826C00 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F1FF09A293DE14B00826C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Recipes.storyboard; sourceTree = "<group>"; };

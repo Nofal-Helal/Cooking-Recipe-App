@@ -148,7 +148,9 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
             
             let alertController = UIAlertController(title: "Recipe Action", message: recipeTitle, preferredStyle: .actionSheet)
             alertController.addAction(UIAlertAction(title: "Favourite Recipe", style: .default) { _ in })
-            alertController.addAction(UIAlertAction(title: "Edit Recipe", style: .default) { _ in })
+            alertController.addAction(UIAlertAction(title: "Edit Recipe", style: .default) { [self, indexPath] _ in
+                performSegue(withIdentifier: "Edit Recipe", sender: tableView.cellForRow(at: indexPath) )
+            })
             alertController.addAction(UIAlertAction(title: "Delete Recipe", style: .destructive) { _ in })
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             
@@ -176,6 +178,17 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     @IBAction func addButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "Add Recipe", sender: nil)
     }
+    
+     @IBSegueAction func editRecipe(_ coder: NSCoder, sender: RecipeTableViewCell?) -> RecipeEditorViewController? {
+         guard let sender = sender,
+               let indexPath = tableView.indexPath(for: sender)
+         else {
+             return nil
+         }
+         let recipe = recipesSource[indexPath.row]
+         return RecipeEditorViewController(coder: coder, recipe: recipe)
+     }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

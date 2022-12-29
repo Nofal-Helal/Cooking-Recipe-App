@@ -39,7 +39,7 @@ extension Ingredient {
     // Create an instance of Ingredient by parsing text
     init?(fromLine line: String) {
         let ingredientRegex = try! NSRegularExpression(
-            pattern: #"((?:\d+(?:\.\d+){0,1}){0,1}\s*[¼½¾⅓⅔]{0,1}){0,1}\s*(tsp|tbsp|cups|cup|lb|oz|kg|g|ml|l){0,1}\s+(.*)$"#,
+            pattern: #"((?:\d+(?:\.\d+){0,1}){0,1}\s*[¼½¾⅓⅔]{0,1}){0,1}\s*(?:(tsp|tbsp|cups|cup|lb|oz|kg|g|ml|l)\s+){0,1}(.*)$"#,
             options: .caseInsensitive)
         guard let match = ingredientRegex.firstMatch(in: line, range: NSRange(line.startIndex..., in: line)) else {return nil}
         
@@ -47,7 +47,7 @@ extension Ingredient {
         let unitString = match.matchAt(2, forString: line)
         let text = match.matchAt(3, forString: line)
         
-        if valueString == nil {
+        if valueString == nil || valueString!.isEmpty {
             self.measurement = nil
         } else {
             let unit = unitString == nil || unitString!.isEmpty ? Count.count : Ingredient.symbolToUnit(unitString!.lowercased())
@@ -150,7 +150,7 @@ extension Recipe {
                 Ingredient(fromLine: "4 oz butter")!,
                 Ingredient(fromLine: "1.5tsp sugar")!,
                 Ingredient(fromLine: "8oz water")!,
-                Ingredient(fromLine: "1 cups ,flour")!,
+                Ingredient(fromLine: "1 cups flour")!,
                 Ingredient(fromLine: "4 eggs")!,
                 Ingredient(fromLine: "2 egg yolks")!,
                 Ingredient(fromLine: "200ml milk")!,
