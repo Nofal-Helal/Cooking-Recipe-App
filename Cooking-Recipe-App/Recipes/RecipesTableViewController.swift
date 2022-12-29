@@ -11,6 +11,8 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     
     var recipes: [Recipe] = Recipe.sample_recipes //[Recipe].init(repeating: Recipe.sample_recipes[0], count: 10)
     var filteredRecipes: [Recipe] = [Recipe]()
+    var sortPredicate: (Recipe, Recipe) -> Bool = { $0.title.lexicographicallyPrecedes($1.title) }
+    var sortDirection: Bool = false // false for ascending, true for descending
 
     let searchController = UISearchController()
     let addButton = UIButton()
@@ -42,6 +44,8 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         searchController.searchBar.enablesReturnKeyAutomatically = false
         searchController.searchBar.returnKeyType = .done
         searchController.searchBar.delegate = self
+        searchController.searchBar.showsBookmarkButton = true
+        searchController.searchBar.setImage(UIImage(systemName: "arrow.up.arrow.down"), for: .bookmark, state: .normal)
         definesPresentationContext = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -53,6 +57,51 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         
         filteredRecipes = recipes.filter { recipe in
             recipe.title.lowercased().contains(searchText.lowercased())
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        let alertController = UIAlertController(title: "Sort", message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Recipe Title (A-Z)", style: .default) { _ in
+            self.sortPredicate = { $0.title.lexicographicallyPrecedes($1.title) }
+            self.sortRecipes()
+        })
+        alertController.addAction(UIAlertAction(title: "Cooking Time", style: .default) { _ in
+            self.sortPredicate = { ($0.preparationTime+$0.cookingTime) < ($1.preparationTime+$1.cookingTime) }
+            self.sortRecipes()
+        })
+        alertController.addAction(UIAlertAction(title: "Number of Ingredients", style: .default) { _ in
+            self.sortPredicate = {$0.ingredients.count < $1.ingredients.count }
+            self.sortRecipes()
+        })
+        alertController.addAction(UIAlertAction(title: "Sort Ascending", style: .default) { _ in
+            self.sortDirection = false
+            self.sortRecipes()
+        })
+        alertController.addAction(UIAlertAction(title: "Sort Descending", style: .default) { _ in
+            self.sortDirection = true
+            self.sortRecipes()
+        })
+        alertController.addAction(UIAlertAction(title: "Done", style: .cancel))
+        
+        self.present(alertController, animated: true)
+    }
+    
+    func sortRecipes() {
+        if searchController.isActive {
+            filteredRecipes.sort(by: self.sortPredicate)
+        } else {
+            recipes.sort(by: self.sortPredicate)
+        }
+        
+        if sortDirection { // descending
+            if searchController.isActive {
+                filteredRecipes.reverse()
+            } else {
+                recipes.reverse()
+            }
         }
         
         tableView.reloadData()
