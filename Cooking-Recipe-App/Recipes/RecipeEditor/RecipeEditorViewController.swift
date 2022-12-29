@@ -108,7 +108,7 @@ class RecipeEditorViewController: UIViewController {
             }
             str.append(ingredient.text)
             str.append("\n")
-            return acc + str
+            return (acc ?? "") + str
         }
         // Directions
         directionsController.textView.text = recipe.directions.joined(separator: "\n")
