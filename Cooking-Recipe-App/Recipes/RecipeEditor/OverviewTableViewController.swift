@@ -21,6 +21,8 @@ class OverviewTableViewController: UITableViewController, UIImagePickerControlle
     @IBOutlet var recipeImageView: UIImageView!
     @IBOutlet var cameraIcon: UIImageView!
     
+    var categories: [String]!
+    
     let numberRegex = try! NSRegularExpression(pattern: #"\d+(\.\d+){0,1}"#)
     
     override func viewDidLoad() {
@@ -92,5 +94,24 @@ class OverviewTableViewController: UITableViewController, UIImagePickerControlle
         dismiss(animated: true)
     }
 
+    
+    @IBSegueAction func openCategoriesSelector(_ coder: NSCoder) -> CategoriesSelectorTableViewController? {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        return CategoriesSelectorTableViewController(coder: coder, categories: categories)
+    }
+    
+    @IBAction func unwindFromCategoriesSelectionCancel(unwindSegue: UIStoryboardSegue) {}
+    
+    @IBAction func unwindFromCategoriesSelectionDone(unwindSegue: UIStoryboardSegue) {
+        let categoriesSelector = unwindSegue.source as! CategoriesSelectorTableViewController
+        categories = [String](categoriesSelector.selectedCategories)
+        if categories.isEmpty {
+            categoriesLabel.text = "None"
+        } else {
+            categoriesLabel.text = categories.joined(separator: ", ")
+        }
+    }
     
 }

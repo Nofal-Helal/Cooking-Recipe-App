@@ -130,6 +130,72 @@
             </objects>
             <point key="canvasLocation" x="1862" y="187"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eZZ-MZ-Qce">
+            <objects>
+                <navigationController id="Hgz-CO-XU5" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0w3-Te-Q2h">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="xZ6-5l-joB" kind="relationship" relationship="rootViewController" destinationCreationSelector="openCategoriesSelector:" id="unm-8f-Xs5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hWs-1O-YQK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1069" y="1651"/>
+        </scene>
+        <!--Categories-->
+        <scene sceneID="rAf-fG-PVC">
+            <objects>
+                <tableViewController id="xZ6-5l-joB" customClass="CategoriesSelectorTableViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="1N4-gJ-IDS">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="Category" textLabel="iIC-9T-c87" style="IBUITableViewCellStyleDefault" id="sZj-Nh-E9a">
+                                <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sZj-Nh-E9a" id="Sra-nI-Xny">
+                                    <rect key="frame" x="0.0" y="0.0" width="346" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iIC-9T-c87">
+                                            <rect key="frame" x="20" y="0.0" width="318" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xZ6-5l-joB" id="4FM-Z8-Aba"/>
+                            <outlet property="delegate" destination="xZ6-5l-joB" id="CUk-uh-LJO"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Categories" id="Cg2-6O-gav">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="GR8-Pr-r8s">
+                            <connections>
+                                <segue destination="t1f-vY-RYc" kind="unwind" unwindAction="unwindFromCategoriesSelectionCancelWithUnwindSegue:" id="71t-83-trj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="UJm-Hn-g3r">
+                            <connections>
+                                <segue destination="t1f-vY-RYc" kind="unwind" unwindAction="unwindFromCategoriesSelectionDoneWithUnwindSegue:" id="TGY-52-W7s"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mra-KA-9Iv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="t1f-vY-RYc" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2078" y="1651"/>
+        </scene>
         <!--Add Recipe-->
         <scene sceneID="odU-qc-8Rs">
             <objects>
@@ -199,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ue4-Ak-hgW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1067.6923076923076" y="954.73933649289097"/>
+            <point key="canvasLocation" x="160" y="958"/>
         </scene>
         <!--Ingredients-->
         <scene sceneID="rfo-5A-YLk">
@@ -232,7 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVS-n9-hDL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1067.6923076923076" y="1635.7819905213269"/>
+            <point key="canvasLocation" x="2078" y="958"/>
         </scene>
         <!--Overview-->
         <scene sceneID="zJH-Le-Vmr">
@@ -321,6 +387,9 @@
                                                 <constraint firstItem="IrV-wg-dWH" firstAttribute="leading" secondItem="MYr-9h-2CG" secondAttribute="leading" constant="20" symbolic="YES" id="uel-hg-k5k"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Hgz-CO-XU5" kind="presentation" id="SP0-7n-l4k"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -519,7 +588,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6.1538461538461533" y="1635.7819905213269"/>
+            <point key="canvasLocation" x="1068" y="958"/>
         </scene>
         <!--Directions-->
         <scene sceneID="4OG-GO-MlH">
@@ -552,7 +621,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boT-ye-guS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2036.9230769230769" y="1635.7819905213269"/>
+            <point key="canvasLocation" x="3022" y="958"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

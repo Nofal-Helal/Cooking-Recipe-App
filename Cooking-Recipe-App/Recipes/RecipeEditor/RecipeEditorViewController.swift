@@ -84,6 +84,7 @@ class RecipeEditorViewController: UIViewController {
         // Overview
         overviewController.recipeTitleField.text = recipe.title
         overviewController.categoriesLabel.text = recipe.categories.joined(separator: ", ")
+        overviewController.categories = recipe.categories
         overviewController.sourceField.text = recipe.source
         overviewController.yieldField.text = recipe.yield
         overviewController.yieldEdited(overviewController.yieldField)

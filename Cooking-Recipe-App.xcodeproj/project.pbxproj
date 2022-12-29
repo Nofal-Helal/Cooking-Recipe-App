@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F020358295DC82300EBFBA1 /* CategoriesSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F020357295DC82300EBFBA1 /* CategoriesSelectorTableViewController.swift */; };
 		3F1FF096293DE03200826C00 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FF095293DE03200826C00 /* FavouritesViewController.swift */; };
 		3F1FF098293DE03800826C00 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FF097293DE03800826C00 /* SettingsViewController.swift */; };
 		3F1FF09B293DE14B00826C00 /* Recipes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1FF099293DE14B00826C00 /* Recipes.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F020357295DC82300EBFBA1 /* CategoriesSelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSelectorTableViewController.swift; sourceTree = "<group>"; };
 		3F1FF095293DE03200826C00 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		3F1FF097293DE03800826C00 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F1FF09A293DE14B00826C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Recipes.storyboard; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				3F2D7021295995AE0090CD36 /* RecipeEditorViewController.swift */,
 				3F31EDCC2959B7A1007FA31F /* OverviewTableViewController.swift */,
 				3F31EDCE2959C23F007FA31F /* RecipeTextEditingViewController.swift */,
+				3F020357295DC82300EBFBA1 /* CategoriesSelectorTableViewController.swift */,
 			);
 			path = RecipeEditor;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				3FDE7A132949C0400010A3FC /* CategoriesTableViewController.swift in Sources */,
 				3F7C8E492952F07A005EF395 /* Tags.swift in Sources */,
 				3F62FD84295AB855004365A7 /* HeaderTitleCell.swift in Sources */,
+				3F020358295DC82300EBFBA1 /* CategoriesSelectorTableViewController.swift in Sources */,
 				3F74F89C295D8D4C001EA832 /* CategoryAddEditViewController.swift in Sources */,
 				3F1FF096293DE03200826C00 /* FavouritesViewController.swift in Sources */,
 				3F31EDCF2959C23F007FA31F /* RecipeTextEditingViewController.swift in Sources */,
