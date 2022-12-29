@@ -9,7 +9,7 @@ import UIKit
 
 class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
     
-    var recipes: [Recipe] = Recipe.sample_recipes //[Recipe].init(repeating: Recipe.sample_recipes[0], count: 10)
+    var recipes: [Recipe]!
     var filteredRecipes: [Recipe] = [Recipe]()
     var sortPredicate: (Recipe, Recipe) -> Bool = { $0.title.lexicographicallyPrecedes($1.title) }
     var sortDirection: Bool = false // false for ascending, true for descending
@@ -17,9 +17,20 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     let searchController = UISearchController()
     let addButton = UIButton()
     
+    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Save sample recipes on first launch
+        if userDefaults.bool(forKey: "First Launch") == false {
+            if Recipe.loadRecipes() == nil {
+                Recipe.saveRecipes(Recipe.sample_recipes)
+            }
+        }
+        userDefaults.set(true, forKey: "First Launch")
+        
+        recipes = Recipe.loadRecipes()!
 
         // setup searchbar
         searchBarInit()
