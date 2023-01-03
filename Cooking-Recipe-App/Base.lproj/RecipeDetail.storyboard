@@ -46,6 +46,9 @@
                                     </attributedString>
                                     <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="Vlu-ti-dRs" kind="show" destinationCreationSelector="StartDirects:" id="dSX-BU-Vml"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5Q-yL-8w6">
                                 <rect key="frame" x="20" y="320" width="374" height="68"/>
@@ -174,6 +177,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6uW-Fg-aaw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1976.8115942028987" y="987.72321428571422"/>
+        </scene>
+        <!--Direction View Controller-->
+        <scene sceneID="wav-Uy-r4b">
+            <objects>
+                <viewController id="Vlu-ti-dRs" customClass="DirectionViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5sp-e5-PGe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Directions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOu-xu-du2">
+                                <rect key="frame" x="12" y="59" width="139" height="38.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nif-O8-zPu">
+                                <rect key="frame" x="20" y="124" width="374" height="672"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="MYk-dz-Src"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eDY-DM-tQd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oOu-xu-du2" firstAttribute="leading" secondItem="eDY-DM-tQd" secondAttribute="leading" constant="12" id="FwL-4H-uyF"/>
+                            <constraint firstItem="eDY-DM-tQd" firstAttribute="trailing" secondItem="Nif-O8-zPu" secondAttribute="trailing" constant="20" id="VXx-AK-g90"/>
+                            <constraint firstItem="Nif-O8-zPu" firstAttribute="leading" secondItem="eDY-DM-tQd" secondAttribute="leading" constant="20" id="Waa-AR-16x"/>
+                            <constraint firstItem="Nif-O8-zPu" firstAttribute="top" secondItem="oOu-xu-du2" secondAttribute="bottom" constant="26.5" id="cv8-x7-RW5"/>
+                            <constraint firstItem="eDY-DM-tQd" firstAttribute="bottom" secondItem="Nif-O8-zPu" secondAttribute="bottom" constant="46" id="iIT-QM-FQK"/>
+                            <constraint firstItem="oOu-xu-du2" firstAttribute="top" secondItem="5sp-e5-PGe" secondAttribute="topMargin" constant="15" id="slf-jN-4HK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="S8l-wx-Nlv"/>
+                    <connections>
+                        <outlet property="directs" destination="Nif-O8-zPu" id="AyR-1h-o2N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="siU-Ky-uxi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2779.7101449275365" y="987.72321428571422"/>
         </scene>
     </scenes>
     <resources>

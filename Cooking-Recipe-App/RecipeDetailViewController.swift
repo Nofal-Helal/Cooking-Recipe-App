@@ -18,6 +18,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet var cookTime: UILabel!
     @IBOutlet var yield: UILabel!
     @IBOutlet var ingredTableView: UITableView!
+
     
     
     override func viewDidLoad() {
@@ -96,4 +97,8 @@ class RecipeDetailViewController: UIViewController {
         }
     }
     
+    @IBSegueAction func StartDirects(_ coder: NSCoder) -> DirectionViewController? {
+        let directions = recipe.directions
+        return DirectionViewController(coder: coder/*, recipe: directions*/)
+    }
 }

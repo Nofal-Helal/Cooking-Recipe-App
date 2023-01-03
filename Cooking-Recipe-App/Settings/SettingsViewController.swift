@@ -8,13 +8,15 @@
 import UIKit
 import Foundation
 
-class SettingsViewController: UIViewController, UITextFieldDelegate {
+
+
+class SettingsViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var textF: UITextField!
     var headers = ["Settings","Stay toned"]
     var sets = ["Measurement System","Display Theme","Rate US"]
-    var n: [Int] = [55,55,55]
+    var n: [String] = ["","1","2"]
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +28,29 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     func registerTableCells(){
         tableView.register(UINib(nibName: "HeaderTitleCell", bundle: nil), forCellReuseIdentifier: "HeaderTitleCell")
     }
+    
+    //creating fileManager
+    static var archiveURL: URL {
+        var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            documentsURL.appendPathComponent("Settings.plist")
+        return documentsURL
+    }
+    //saving username, theme and measure
+    static func saveSettings(_ n: String) {
+        let plistEncoder = PropertyListEncoder()
+        if let encodedSetting = try? plistEncoder.encode(n) {
+            try? encodedSetting.write(to: archiveURL)
+        }
+    }
+    //load the stuff
+    /*static func loadSettings() -> [SettingsViewController]? {
+        let plistDecoder = PropertyListDecoder()
+        if let encodedSetting = try? Data(contentsOf: archiveURL),
+           let decodedSetting = try? plistDecoder.decode([SettingsViewController].self, from: encodedSetting) {
+            return decodedSetting
+        }
+        return nil
+    }*/
 
 }
 
@@ -138,11 +163,11 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             let appDelegate = UIApplication.shared.windows.first
             if(num == 1){
                 appDelegate?.overrideUserInterfaceStyle = .light
-                //n[0] = 1
+                n[1] = "1"
                 return
             }else if(num == 2){
                 appDelegate?.overrideUserInterfaceStyle = .dark
-                //n[0] = 2
+                n[1] = "2"
                 return
             }
         }
@@ -150,34 +175,13 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     // for measurement system
     func measurementSys(num: Int){
         if(num == 1){
-            //n[1] = 1
+            n[2] = "1"
         }else if (num == 2){
-            //n[1] = 2
+            n[2] = "2"
         }else if (num == 3){
-            //n[1] = 3
+            n[2] = "3"
         }
     }
-    //creating fileManager
-    static var archiveURL: URL {
-        var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            documentsURL.appendPathComponent("Settings.plist")
-        return documentsURL
-    }
-    //saving username, theme and measure
-    static func saveRecipes(_ n: Int) {
-        let plistEncoder = PropertyListEncoder()
-        if let encodedRecipes = try? plistEncoder.encode(n) {
-            try? encodedRecipes.write(to: archiveURL)
-        }
-    }
-    //load the stuff
-    /*static func loadRecipes() -> [Recipe]? {
-        let plistDecoder = PropertyListDecoder()
-        if let encodedRecipes = try? Data(contentsOf: archiveURL),
-           let decodedRecipes = try? plistDecoder.decode([Recipe].self, from: encodedRecipes) {
-            return decodedRecipes
-        }
-        return nil
-    }*/
+
     
 }
