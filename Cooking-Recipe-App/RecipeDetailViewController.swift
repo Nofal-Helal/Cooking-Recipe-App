@@ -13,6 +13,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet var dTitle: UILabel!
     @IBOutlet var dDesc: UILabel!
     @IBOutlet var categories: Tags!
+    @IBOutlet var dImage: UIImageView!
     
     @IBOutlet var prepTime: UILabel!
     @IBOutlet var cookTime: UILabel!
@@ -42,10 +43,13 @@ class RecipeDetailViewController: UIViewController {
         
         dTitle.text = recipe.title
         dDesc.text = recipe.description
-        //categories = recipe.categories
-        prepTime.text = String(recipe.preparationTime)
+        //categories = Tags.normalTag(recipe.categories)
+        //prepTime.text = String(Tags.timeTag(String(recipe.preparationTime)))
         cookTime.text = String(recipe.cookingTime)
         yield.text = String(recipe.yield)
+        if let image = recipe.image {
+            dImage.image = UIImage(data: image)
+        }
         
     }
     
@@ -98,7 +102,7 @@ class RecipeDetailViewController: UIViewController {
     }
     
     @IBSegueAction func StartDirects(_ coder: NSCoder) -> DirectionViewController? {
-        let directions = recipe.directions
+        //_ns = recipe.directions
         return DirectionViewController(coder: coder/*, recipe: directions*/)
     }
 }
