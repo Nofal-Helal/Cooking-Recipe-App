@@ -27,7 +27,6 @@
                                 <rect key="frame" x="20" y="279" width="384" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="rfr-k5-gLR"/>
-                                    <constraint firstAttribute="width" constant="384" id="vkK-qq-B6O"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -37,7 +36,6 @@
                                 <rect key="frame" x="30" y="825" width="354" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="INS-iG-4h1"/>
-                                    <constraint firstAttribute="width" constant="354" id="xWG-eF-jdI"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="large">
@@ -57,7 +55,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5Q-yL-8w6">
                                 <rect key="frame" x="20" y="320" width="384" height="68"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="384" id="YIf-jC-fBw"/>
                                     <constraint firstAttribute="height" constant="68" id="y1d-RI-xSJ"/>
                                 </constraints>
                                 <attributedString key="attributedText">
@@ -115,7 +112,6 @@
                                 <rect key="frame" x="20" y="503" width="121" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="1Uv-ax-7Rv"/>
-                                    <constraint firstAttribute="width" constant="121" id="AUW-xn-vD6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
@@ -124,7 +120,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yield" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QmD-jo-pOZ">
                                 <rect key="frame" x="20" y="536" width="44" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="m0f-uL-QZ0"/>
                                     <constraint firstAttribute="height" constant="24" id="vzF-mn-BDk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>

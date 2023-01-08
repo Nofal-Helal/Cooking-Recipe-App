@@ -43,9 +43,21 @@ class RecipeDetailViewController: UIViewController {
         
         dTitle.text = recipe.title
         dDesc.text = recipe.description
-        //categories = Tags.normalTag(recipe.categories)
-        //prepTime.text = String(Tags.timeTag(String(recipe.preparationTime)))
-        cookTime.text = String(recipe.cookingTime)
+        var p = [NSAttributedString]()
+        p.append(contentsOf: recipe.categories.map(Tags.normalTag(_:)))
+        p.append(Tags.sourceTag(recipe.source))
+        categories.withTags(p)
+        
+        let (h, m) = Int(recipe.preparationTime).quotientAndRemainder(dividingBy: 3600)
+        let hString = h == 0 ? "00h" : " \(h)h"
+        let mString = m/60 == 0 && h != 0 ? "" : " \(m/60)m"
+        prepTime.text = "\(hString) : \(mString)"
+        
+        let (hour, minute) = Int(recipe.cookingTime).quotientAndRemainder(dividingBy: 3600)
+        let hourString = hour == 0 ? "00h" : " \(hour)h"
+        let minuteString = minute/60 == 0 && hour != 0 ? "" : " \(minute/60)m"
+        cookTime.text = "\(hourString) : \(minuteString)"
+        
         yield.text = String(recipe.yield)
         if let image = recipe.image {
             dImage.image = UIImage(data: image)
@@ -102,7 +114,7 @@ class RecipeDetailViewController: UIViewController {
     }
     
     @IBSegueAction func StartDirects(_ coder: NSCoder) -> DirectionViewController? {
-        //_ns = recipe.directions
+        //directions = recipe.directions
         return DirectionViewController(coder: coder/*, recipe: directions*/)
     }
 }

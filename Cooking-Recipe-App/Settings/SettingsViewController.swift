@@ -13,15 +13,17 @@ import Foundation
 class SettingsViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var textF: UITextField!
+    let userDefaults = UserDefaults.standard
+    var displayNum: Int = 1
+    
     var headers = ["Settings","Stay toned"]
     var sets = ["Measurement System","Display Theme","Rate US"]
-    var n: [String] = ["","1","2"]
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         registerTableCells()
+        
         
     }
     
@@ -163,11 +165,11 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             let appDelegate = UIApplication.shared.windows.first
             if(num == 1){
                 appDelegate?.overrideUserInterfaceStyle = .light
-                n[1] = "1"
+                userDefaults.set(1, forKey: "Display Theme")
                 return
             }else if(num == 2){
                 appDelegate?.overrideUserInterfaceStyle = .dark
-                n[1] = "2"
+                userDefaults.set(2, forKey: "Display Theme")
                 return
             }
         }
@@ -175,13 +177,18 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     // for measurement system
     func measurementSys(num: Int){
         if(num == 1){
-            n[2] = "1"
+
+            userDefaults.set(1, forKey: "measurement System")
         }else if (num == 2){
-            n[2] = "2"
+
+            userDefaults.set(2, forKey: "measurement System")
         }else if (num == 3){
-            n[2] = "3"
+
+            userDefaults.set(3, forKey: "measurement System")
         }
     }
 
     
 }
+
+
