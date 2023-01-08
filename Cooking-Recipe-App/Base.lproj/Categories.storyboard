@@ -24,7 +24,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJD-yy-9zW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1437" y="77"/>
+            <point key="canvasLocation" x="-1443" y="85"/>
         </scene>
         <!--Categorires-->
         <scene sceneID="le5-W7-D2z">
@@ -35,16 +35,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="O5z-Lr-yKG">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O5z-Lr-yKG" id="E0m-Gp-Mrv">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="134" id="zOw-L4-cdf" customClass="CategoriesTableViewCell" customModule="Cooking_Recipe_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88.333333969116211" width="390" height="134"/>
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="134"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zOw-L4-cdf" id="nB8-d6-8fJ">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="134"/>
@@ -94,6 +86,7 @@
                         <connections>
                             <outlet property="dataSource" destination="TIA-e5-x29" id="Fig-vv-SO9"/>
                             <outlet property="delegate" destination="TIA-e5-x29" id="ZSH-LE-Lmp"/>
+                            <outletCollection property="gestureRecognizers" destination="okV-gb-TZi" appends="YES" id="Odh-yQ-0Ob"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Categorires" id="E05-Ha-abQ">
@@ -103,8 +96,16 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="JoE-9V-Bmi" kind="show" identifier="EditCategory" destinationCreationSelector="editCategory:sender:" id="TEz-8G-BXb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rq5-AA-LTD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="okV-gb-TZi">
+                    <connections>
+                        <action selector="categoryLongPressed:" destination="TIA-e5-x29" id="MZX-xy-sNa"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-389.23076923076923" y="84.597156398104261"/>
         </scene>
@@ -137,6 +138,10 @@
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="add category"/>
+                                <connections>
+                                    <action selector="saveBtn:" destination="JoE-9V-Bmi" eventType="touchUpInside" id="Lfb-QP-HrD"/>
+                                    <segue destination="fmk-We-rxl" kind="unwind" unwindAction="unwindFromCategorySave:" id="pVr-Cc-JoR"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UDE-Gx-BL7"/>
@@ -144,10 +149,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="New Category" id="hv2-q6-1G3"/>
                     <connections>
-                        <outlet property="category1" destination="f36-Nt-mCN" id="2mX-rh-IjN"/>
+                        <outlet property="categoryImage" destination="aL8-YS-MOR" id="csw-RD-O3m"/>
+                        <outlet property="categoryTextField" destination="f36-Nt-mCN" id="2mX-rh-IjN"/>
+                        <outlet property="saveButton" destination="7uK-S8-CPi" id="g9O-de-SqU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyE-fQ-2yo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="fmk-We-rxl" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="vEj-1n-AyL">
                     <connections>
                         <action selector="imageTapped:" destination="JoE-9V-Bmi" id="GHJ-6Z-lSZ"/>
@@ -157,6 +165,9 @@
             <point key="canvasLocation" x="585" y="85"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="TEz-8G-BXb"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="circle.grid.2x2.fill" catalog="system" width="128" height="112"/>
         <systemColor name="systemBackgroundColor">

@@ -9,6 +9,8 @@ import UIKit
 
 class CategoriesTableViewController: UITableViewController {
 
+    var categories = Category.sampleCategories
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,18 +25,6 @@ class CategoriesTableViewController: UITableViewController {
         tableView.isEditing = true
     }
     
-    struct Category {
-        let title : String
-        let ImageName : UIImage
-    }
-    
-    var data: [Category]=[
-        Category(title: "Breakfast",ImageName: UIImage(named: "img_breakfast")!),
-        Category(title: "Dinner", ImageName: UIImage(named:"img_dinner")!),
-        Category(title: "Lunch", ImageName: UIImage(named:"img_lunch")!),
-        Category(title: "Dessert", ImageName: UIImage(named:"img_dessert")!)
-        
-    ]
   
     
 
@@ -43,15 +33,19 @@ class CategoriesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return data.count
+        return categories.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CategoriesTableViewCell
-        let category = data[indexPath.row]
+        let category = categories[indexPath.row]
         let numberRecipes = Recipe.loadRecipes()?.filter({ $0.categories.contains(category.title) }).count ?? 0
-        cell.iconImageView.image = category.ImageName
-        cell.label1.text = "\(numberRecipes) recipes"
+        if let imageData = category.imageData {
+            cell.iconImageView.image = UIImage(data: imageData)
+        } else {
+            cell.iconImageView.image = UIImage(named: "placeholder")
+        }
+        cell.label1.text = "\(numberRecipes) Recipes"
         cell.label.text = category.title
         return cell
     }
@@ -59,15 +53,32 @@ class CategoriesTableViewController: UITableViewController {
         return 140
 
     }
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
+
+
+    @IBSegueAction func editCategory(_ coder: NSCoder, sender: UITableViewCell?) -> CategoryAddEditViewController? {
+        let category = categories[tableView.indexPath(for: sender!)!.row]
+        return CategoryAddEditViewController(coder: coder, category: category)
     }
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-
-        data.swapAt(sourceIndexPath.row , destinationIndexPath.row)
+    
+    @IBAction func categoryLongPressed(_ sender: UILongPressGestureRecognizer) {
+        let indexPath = tableView.indexPathForRow(at: sender.location(in: tableView))
+        if indexPath != nil && sender.state == .began {
+            let indexPath = indexPath!
+            let categoryTitle = categories[indexPath.row].title
+            
+            let alertController = UIAlertController(title: "Category Action", message: categoryTitle, preferredStyle: .actionSheet)
+            alertController.addAction(UIAlertAction(title: "Edit Category", style: .default) {
+                [self, indexPath] _ in
+                performSegue(withIdentifier: "EditCategory", sender: tableView.cellForRow(at: indexPath) )
+            })
+            alertController.addAction(UIAlertAction(title: "Delete Recipe", style: .destructive) { _ in })
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            
+            self.present(alertController, animated: true)
+        }
 
     }
-
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

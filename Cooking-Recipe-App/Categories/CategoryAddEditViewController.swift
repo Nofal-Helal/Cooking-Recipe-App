@@ -11,7 +11,9 @@ class CategoryAddEditViewController: UIViewController {
 
     var category: Category?
     
-    @IBOutlet weak var category1: UITextField!
+    @IBOutlet weak var categoryImage: UIImageView!
+    @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var saveButton: UIButton!
     
     required init?(coder: NSCoder, category: Category) {
         super.init(coder: coder)
@@ -26,9 +28,24 @@ class CategoryAddEditViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if category != nil {
+            navigationItem.title = "Edit Category"
+            categoryTextField.placeholder = "Rename Category"
+            saveButton.setTitle("Save", for: .normal)
+            
+            if let imageData = category!.imageData {
+                categoryImage.image = UIImage(data: imageData)
+            } else {
+                categoryImage.image = UIImage(named: "placeholder")
+            }
+            categoryTextField.text = category?.title
+        }
     }
     
-
+    @IBAction func saveBtn(_ sender: Any) {
+        
+    }
+    
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
             

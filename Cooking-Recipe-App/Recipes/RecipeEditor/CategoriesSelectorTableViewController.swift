@@ -27,13 +27,7 @@ class CategoriesSelectorTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     // TODO: load categories from storage
-    var data: [CategoriesTableViewController.Category]=[
-        CategoriesTableViewController.Category(title: "Breakfast",ImageName: UIImage(named: "img_breakfast")!),
-        CategoriesTableViewController.Category(title: "Dinner", ImageName: UIImage(named:"img_dinner")!),
-        CategoriesTableViewController.Category(title: "Lunch", ImageName: UIImage(named:"img_lunch")!),
-        CategoriesTableViewController.Category(title: "Dessert", ImageName: UIImage(named:"img_dessert")!)
-        
-    ]
+    var data: [Category] = Category.sampleCategories
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
