@@ -140,8 +140,8 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             let setTitle = sets[indexPath.row]
             
             let alertController = UIAlertController(title: "Display Theme", message: setTitle, preferredStyle: .actionSheet)
-            alertController.addAction(UIAlertAction(title: "Light", style: .default) { _ in self.DisplayTheme(num: 1) })
-            alertController.addAction(UIAlertAction(title: "Dark", style: .default) { _ in self.DisplayTheme(num: 2)})
+            alertController.addAction(UIAlertAction(title: "Light", style: .default) { _ in SettingsViewController.DisplayTheme(num: 1) })
+            alertController.addAction(UIAlertAction(title: "Dark", style: .default) { _ in SettingsViewController.DisplayTheme(num: 2)})
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             
             self.present(alertController, animated: true)
@@ -160,7 +160,8 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         }
     }
     //funtion to change between dark and light modes
-    func DisplayTheme(num: Int){
+    static func DisplayTheme(num: Int){
+        let userDefaults = UserDefaults.standard
         if #available(iOS 13.0, *){
             let appDelegate = UIApplication.shared.windows.first
             if(num == 1){

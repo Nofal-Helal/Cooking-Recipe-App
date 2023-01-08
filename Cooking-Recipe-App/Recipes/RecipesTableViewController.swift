@@ -32,6 +32,9 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         }
         userDefaults.set(true, forKey: "First Launch")
         
+        // set theme
+        SettingsViewController.DisplayTheme(num: userDefaults.integer(forKey: "Display Theme"))
+        
         recipes = Recipe.loadRecipes()!
         
         sortRecipes()
