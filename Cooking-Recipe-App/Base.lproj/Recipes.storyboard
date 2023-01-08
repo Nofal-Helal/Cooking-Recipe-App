@@ -74,6 +74,7 @@
                                     <outlet property="recipeImageView" destination="gPk-B5-jvH" id="BG9-4z-7LA"/>
                                     <outlet property="tags" destination="Edy-Bt-BSP" id="0uB-3B-pfC"/>
                                     <outlet property="titleLabel" destination="N1D-Y8-ToL" id="MPA-rE-svG"/>
+                                    <segue destination="dEv-3E-nHn" kind="show" destinationCreationSelector="viewRecipeDetails:sender:" id="0xp-f4-hCd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
