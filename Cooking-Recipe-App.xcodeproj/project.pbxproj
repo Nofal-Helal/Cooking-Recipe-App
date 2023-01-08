@@ -82,6 +82,7 @@
 		3F1FF08C293DDFCB00826C00 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				3FD2587A296ACA2000B462EE /* RecipeDetail */,
 				3F2D70202959957E0090CD36 /* RecipeEditor */,
 				3F2C518729471CDB00CA1975 /* Recipe.swift */,
 				3F5F3B9E2949B27D00E37F7B /* RecipesTableViewController.swift */,
@@ -150,8 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				3F5F3BA22949C3B000E37F7B /* RecipeDetail.storyboard */,
-				3FD5693529640F9C0067ACB4 /* DirectionViewController.swift */,
-				3F62FD86295AD2A7004365A7 /* RecipeDetailViewController.swift */,
 				3F1FF0A1293DE19600826C00 /* Settings.storyboard */,
 				3F1FF09E293DE18600826C00 /* Categories.storyboard */,
 				3F1FF099293DE14B00826C00 /* Recipes.storyboard */,
@@ -168,6 +167,15 @@
 				3FBB75E5293DD1DD00756A63 /* Info.plist */,
 			);
 			path = "Cooking-Recipe-App";
+			sourceTree = "<group>";
+		};
+		3FD2587A296ACA2000B462EE /* RecipeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3FD5693529640F9C0067ACB4 /* DirectionViewController.swift */,
+				3F62FD86295AD2A7004365A7 /* RecipeDetailViewController.swift */,
+			);
+			path = RecipeDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

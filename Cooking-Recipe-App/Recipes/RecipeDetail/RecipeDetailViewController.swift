@@ -114,7 +114,6 @@ class RecipeDetailViewController: UIViewController {
     }
     
     @IBSegueAction func StartDirects(_ coder: NSCoder) -> DirectionViewController? {
-        //directions = recipe.directions
-        return DirectionViewController(coder: coder/*, recipe: directions*/)
+        return DirectionViewController(coder: coder, recipe: recipe)
     }
 }

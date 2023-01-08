@@ -9,13 +9,14 @@ import UIKit
 
 class DirectionViewController: UIViewController {
     var recipe: Recipe!
-    @IBOutlet var directs: UILabel!
+    
+    @IBOutlet var directs: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //loadStuff()
+        loadStuff()
     }
     
     required init?(coder: NSCoder, recipe: Recipe) {
@@ -28,10 +29,7 @@ class DirectionViewController: UIViewController {
     }
     
     func  loadStuff(){
-        for i in recipe.directions{
-            directs.text?.append(i)
-            
-        }
+        directs.text = recipe.directions.joined(separator: "\n")
         
     }
         
