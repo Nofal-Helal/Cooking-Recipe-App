@@ -16,8 +16,11 @@ class RecipeEditorViewController: UIViewController {
     var ingredientsController: RecipeTextEditingViewController!
     var directionsController: RecipeTextEditingViewController!
     
+    @IBOutlet var favouriteButton: UIBarButtonItem!
+    
     var recipe: Recipe?
     var recipeID: UUID? // id of recipe being edited
+    var isFavourite: Bool = false
     
     required init?(coder: NSCoder, recipe: Recipe) {
         super.init(coder: coder)
@@ -37,6 +40,12 @@ class RecipeEditorViewController: UIViewController {
         
         if recipe != nil {
             setup(forRecipe: recipe!)
+        }
+        
+        if isFavourite {
+            favouriteButton.image = UIImage(systemName: "heart.fill")
+        } else {
+            favouriteButton.image = UIImage(systemName: "heart")
         }
     }
         
@@ -83,6 +92,7 @@ class RecipeEditorViewController: UIViewController {
     func setup(forRecipe recipe: Recipe) {
         self.recipeID = recipe.id
         self.navigationItem.title = "Edit Recipe"
+        self.isFavourite = recipe.isFavourite
         // Overview
         overviewController.recipeTitleField.text = recipe.title
         overviewController.categoriesLabel.text = recipe.categories.joined(separator: ", ")
@@ -167,8 +177,18 @@ class RecipeEditorViewController: UIViewController {
                       image: image,
                       ingredients: ingredients,
                       directions: directions,
-                      isFavourite: false)
+                      isFavourite: isFavourite)
         
+    }
+    
+    
+    @IBAction func favouriteButtonPressed(_ sender: Any) {
+        isFavourite.toggle()
+        if isFavourite {
+            favouriteButton.image = UIImage(systemName: "heart.fill")
+        } else {
+            favouriteButton.image = UIImage(systemName: "heart")
+        }
     }
     
 }
