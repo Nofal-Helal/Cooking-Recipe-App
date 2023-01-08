@@ -1,39 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kpw-dR-1Cw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6HK-Xa-LAt">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Favourites-->
-        <scene sceneID="bNb-MF-8lR">
+        <scene sceneID="VZp-i5-39R">
             <objects>
-                <viewController title="Favourites" id="kpw-dR-1Cw" customClass="FavouritesViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MBX-uv-auN">
+                <tableViewController id="3iR-OM-Y7D" customClass="FavouritesTableViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="cs4-9u-FJq">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tabBar contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Xag-No-Kon">
-                                <rect key="frame" x="0.0" y="761" width="390" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items/>
-                            </tabBar>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="gE9-Rq-No6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Favourites" image="heart.fill" catalog="system" id="Ad4-sP-Npv"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jTc-KE-L2E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <gestureRecognizers/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="128" id="wbX-hJ-GTe" customClass="RecipeTableViewCell" customModule="Cooking_Recipe_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="390" height="128"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wbX-hJ-GTe" id="fMe-zd-fQ1">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JrW-3b-koN">
+                                            <rect key="frame" x="262" y="0.0" width="128" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="JrW-3b-koN" secondAttribute="height" multiplier="1:1" id="3Qt-TH-1mz"/>
+                                                <constraint firstAttribute="height" constant="128" id="MKe-Ch-mIq"/>
+                                                <constraint firstAttribute="width" constant="128" id="Zbp-2b-9cX"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szr-by-ZJV">
+                                            <rect key="frame" x="20" y="0.0" width="234" height="24"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label label label label label label label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1V1-Nf-YbY">
+                                            <rect key="frame" x="20" y="32" width="234" height="35"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoj-zj-X6n" customClass="Tags" customModule="Cooking_Recipe_App" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="75" width="234" height="53"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1V1-Nf-YbY" firstAttribute="top" secondItem="Szr-by-ZJV" secondAttribute="bottom" constant="8" symbolic="YES" id="0fP-SH-OLP"/>
+                                        <constraint firstAttribute="trailing" secondItem="JrW-3b-koN" secondAttribute="trailing" id="45Y-cO-Hdd"/>
+                                        <constraint firstItem="Szr-by-ZJV" firstAttribute="leading" secondItem="fMe-zd-fQ1" secondAttribute="leading" constant="20" symbolic="YES" id="4TN-6K-k0M"/>
+                                        <constraint firstItem="JrW-3b-koN" firstAttribute="centerY" secondItem="fMe-zd-fQ1" secondAttribute="centerY" id="4uV-mF-7el"/>
+                                        <constraint firstItem="JrW-3b-koN" firstAttribute="leading" secondItem="qoj-zj-X6n" secondAttribute="trailing" constant="8" symbolic="YES" id="7bI-pC-hsW"/>
+                                        <constraint firstItem="1V1-Nf-YbY" firstAttribute="leading" secondItem="fMe-zd-fQ1" secondAttribute="leading" constant="20" symbolic="YES" id="E9E-xT-DL4"/>
+                                        <constraint firstItem="qoj-zj-X6n" firstAttribute="leading" secondItem="fMe-zd-fQ1" secondAttribute="leading" constant="20" symbolic="YES" id="FKf-Dh-FEd"/>
+                                        <constraint firstItem="JrW-3b-koN" firstAttribute="leading" secondItem="1V1-Nf-YbY" secondAttribute="trailing" constant="8" symbolic="YES" id="PBK-no-i60"/>
+                                        <constraint firstItem="qoj-zj-X6n" firstAttribute="top" secondItem="1V1-Nf-YbY" secondAttribute="bottom" constant="8" symbolic="YES" id="U9X-Nc-9g6"/>
+                                        <constraint firstItem="JrW-3b-koN" firstAttribute="leading" secondItem="Szr-by-ZJV" secondAttribute="trailing" constant="8" symbolic="YES" id="aT0-HD-whI"/>
+                                        <constraint firstItem="Szr-by-ZJV" firstAttribute="top" secondItem="JrW-3b-koN" secondAttribute="top" id="kWG-ZJ-Lju"/>
+                                        <constraint firstItem="JrW-3b-koN" firstAttribute="top" secondItem="fMe-zd-fQ1" secondAttribute="top" id="mCU-pe-Ts5"/>
+                                        <constraint firstItem="qoj-zj-X6n" firstAttribute="bottom" secondItem="JrW-3b-koN" secondAttribute="bottom" id="vMD-78-3z6"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="1V1-Nf-YbY" id="h91-2m-31Q"/>
+                                    <outlet property="recipeImageView" destination="JrW-3b-koN" id="0Uc-dX-UFT"/>
+                                    <outlet property="tags" destination="qoj-zj-X6n" id="GeK-xQ-WDm"/>
+                                    <outlet property="titleLabel" destination="Szr-by-ZJV" id="o56-ef-dKw"/>
+                                    <segue destination="dJS-XV-P3P" kind="show" destinationCreationSelector="viewRecipeDetails:sender:" id="gXG-fR-N8E"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3iR-OM-Y7D" id="0fX-v1-Lox"/>
+                            <outlet property="delegate" destination="3iR-OM-Y7D" id="506-uk-PO7"/>
+                            <outletCollection property="gestureRecognizers" destination="uG7-mg-KXq" appends="YES" id="Dtn-Ep-zDP"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Favourites" image="heart.fill" catalog="system" id="VGF-Yq-QG6"/>
+                    <navigationItem key="navigationItem" title="Favourites" id="xCW-tK-Mi1"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="5It-Gq-9ZD" kind="show" identifier="Add Recipe" id="52K-cG-QeC"/>
+                        <segue destination="5It-Gq-9ZD" kind="show" identifier="Edit Recipe" destinationCreationSelector="editRecipe:sender:" id="jdp-uV-jvh"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HFx-cJ-Ipt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="uG7-mg-KXq">
+                    <connections>
+                        <action selector="recipeLongPressed:" destination="3iR-OM-Y7D" id="Ydz-rj-aFg"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2814" y="-289"/>
+            <point key="canvasLocation" x="2942" y="311"/>
+        </scene>
+        <!--Recipe Editor-->
+        <scene sceneID="NLT-cJ-bN0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Recipes" referencedIdentifier="Recipe Editor" id="5It-Gq-9ZD" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="9IQ-c8-P8E"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JV2-m8-r48" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2942" y="743"/>
+        </scene>
+        <!--RecipeDetail-->
+        <scene sceneID="fAn-Yk-Nzp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RecipeDetail" id="dJS-XV-P3P" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="M6H-VQ-0AL"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j1M-Mu-RVt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3715" y="311"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ajy-iU-Vd7">
+            <objects>
+                <navigationController id="6HK-Xa-LAt" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S5Q-zL-m5e">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="3iR-OM-Y7D" kind="relationship" relationship="rootViewController" id="gpY-wu-4Qn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uvq-mF-Mkm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1987" y="311"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="52K-cG-QeC"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <systemColor name="systemBackgroundColor">

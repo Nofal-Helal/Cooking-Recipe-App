@@ -34,10 +34,6 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         
         // set theme
         SettingsViewController.DisplayTheme(num: userDefaults.integer(forKey: "Display Theme"))
-        
-        recipes = Recipe.loadRecipes()!
-        
-        sortRecipes()
 
         // setup searchbar
         searchBarInit()
@@ -45,7 +41,6 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         // floating add button
         addButtonInit()
 
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -53,9 +48,17 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        recipes = Recipe.loadRecipes()!
+        
+        sortRecipes()
+    }
+    
     // MARK: - Search Results
     
-    private func searchBarInit() {
+    func searchBarInit() {
         searchController.loadViewIfNeeded()
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -153,10 +156,14 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
             let indexPath = indexPath!
             let recipeTitle = recipesSource[indexPath.row].title
             let recipeID = recipesSource[indexPath.row].id
+            let isFavourite = recipesSource[indexPath.row].isFavourite
+            let favTitle = isFavourite ? "Unfavourite Recipe" : "Favourite Recipe"
             editingIndexPath = indexPath
             
             let alertController = UIAlertController(title: "Recipe Action", message: recipeTitle, preferredStyle: .actionSheet)
-            alertController.addAction(UIAlertAction(title: "Favourite Recipe", style: .default) { _ in })
+            alertController.addAction(UIAlertAction(title: favTitle, style: .default) { [self, indexPath, recipeID] _ in
+                favouriteRecipeAt(indexPath: indexPath, recipeID: recipeID)
+            })
             alertController.addAction(UIAlertAction(title: "Edit Recipe", style: .default) { [self, indexPath] _ in
                 performSegue(withIdentifier: "Edit Recipe", sender: tableView.cellForRow(at: indexPath) )
             })
@@ -175,7 +182,7 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         }
     }
     
-    private func addButtonInit() {
+    func addButtonInit() {
         addButton.setImage(UIImage(systemName: "plus"), for: .normal)
         addButton.backgroundColor = .systemBlue
         addButton.tintColor = .white
@@ -222,6 +229,17 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         Recipe.saveRecipes(recipes)
     }
     
+    func favouriteRecipeAt(indexPath: IndexPath, recipeID: UUID) {
+        recipes[recipes.firstIndex {$0.id == recipeID}!].isFavourite.toggle()
+        
+        if searchController.isActive {
+            // also update the filtered collection
+            filteredRecipes[filteredRecipes.firstIndex {$0.id == recipeID}!].isFavourite.toggle()
+        }
+        
+        Recipe.saveRecipes(recipes)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -234,7 +252,7 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
 
     @IBSegueAction func viewRecipeDetails(_ coder: NSCoder, sender: RecipeTableViewCell!) -> UIViewController? {
         guard let indexPath = tableView.indexPath(for: sender) else {return nil}
-        let recipe = recipes[indexPath.row]
+        let recipe = recipesSource[indexPath.row]
         return RecipeDetailViewController(coder: coder, recipe: recipe)
     }
     

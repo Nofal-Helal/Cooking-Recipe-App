@@ -14,68 +14,65 @@
         <scene sceneID="cRD-oc-ybl">
             <objects>
                 <tableViewController title="Recipes List" id="rdI-8Y-VWv" customClass="RecipesTableViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="147" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ngm-OG-6qu">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="128" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ngm-OG-6qu">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="128" id="UqX-Ng-1lW" customClass="RecipeTableViewCell" customModule="Cooking_Recipe_App" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="128" id="bDm-AL-Q1a" customClass="RecipeTableViewCell" customModule="Cooking_Recipe_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="390" height="128"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UqX-Ng-1lW" id="ZOs-8k-gft">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bDm-AL-Q1a" id="OTd-Ol-P6a">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3dd-xO-TZx">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gPk-B5-jvH">
                                             <rect key="frame" x="262" y="0.0" width="128" height="128"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="128" id="LEX-mM-71i"/>
-                                                <constraint firstAttribute="width" secondItem="3dd-xO-TZx" secondAttribute="height" multiplier="1:1" id="amf-Re-dJs"/>
-                                                <constraint firstAttribute="height" constant="128" id="mJZ-3o-IIY"/>
+                                                <constraint firstAttribute="width" constant="128" id="7pK-am-Vst"/>
+                                                <constraint firstAttribute="height" constant="128" id="E2V-J0-HW9"/>
+                                                <constraint firstAttribute="width" secondItem="gPk-B5-jvH" secondAttribute="height" multiplier="1:1" id="Zmz-h6-3yA"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHN-Gi-LiH">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1D-Y8-ToL">
                                             <rect key="frame" x="20" y="0.0" width="234" height="24"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label label label label label label label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gc8-Ys-F8B">
-                                            <rect key="frame" x="20" y="31.999999999999996" width="234" height="39.666666666666657"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label label label label label label label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZtJ-vc-uc3">
+                                            <rect key="frame" x="20" y="32" width="234" height="35"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q73-SU-rpz" customClass="Tags" customModule="Cooking_Recipe_App" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="79.666666666666671" width="234" height="48.333333333333329"/>
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Edy-Bt-BSP" customClass="Tags" customModule="Cooking_Recipe_App" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="75" width="234" height="53"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="3dd-xO-TZx" firstAttribute="leading" secondItem="q73-SU-rpz" secondAttribute="trailing" constant="8" symbolic="YES" id="Bua-iR-1HH"/>
-                                        <constraint firstItem="q73-SU-rpz" firstAttribute="leading" secondItem="ZOs-8k-gft" secondAttribute="leading" constant="20" symbolic="YES" id="I2o-vf-OKn"/>
-                                        <constraint firstItem="3dd-xO-TZx" firstAttribute="leading" secondItem="dHN-Gi-LiH" secondAttribute="trailing" constant="8" symbolic="YES" id="LrY-PC-jk5"/>
-                                        <constraint firstItem="q73-SU-rpz" firstAttribute="top" secondItem="gc8-Ys-F8B" secondAttribute="bottom" constant="8" symbolic="YES" id="SKR-IN-3de"/>
-                                        <constraint firstItem="q73-SU-rpz" firstAttribute="bottom" secondItem="3dd-xO-TZx" secondAttribute="bottom" id="SZb-0J-E4Y"/>
-                                        <constraint firstItem="dHN-Gi-LiH" firstAttribute="top" secondItem="3dd-xO-TZx" secondAttribute="top" id="ZPt-xQ-46b"/>
-                                        <constraint firstAttribute="trailing" secondItem="3dd-xO-TZx" secondAttribute="trailing" id="bYo-L7-SRq"/>
-                                        <constraint firstAttribute="bottom" secondItem="3dd-xO-TZx" secondAttribute="bottom" id="dOb-Xp-HEc"/>
-                                        <constraint firstItem="3dd-xO-TZx" firstAttribute="top" secondItem="ZOs-8k-gft" secondAttribute="top" id="iTE-TH-Hwp"/>
-                                        <constraint firstItem="gc8-Ys-F8B" firstAttribute="leading" secondItem="ZOs-8k-gft" secondAttribute="leading" constant="20" symbolic="YES" id="jqP-a8-vcd"/>
-                                        <constraint firstItem="gc8-Ys-F8B" firstAttribute="top" secondItem="dHN-Gi-LiH" secondAttribute="bottom" constant="8" symbolic="YES" id="p9h-2I-mmd"/>
-                                        <constraint firstItem="3dd-xO-TZx" firstAttribute="leading" secondItem="gc8-Ys-F8B" secondAttribute="trailing" constant="8" symbolic="YES" id="qcU-fI-JN9"/>
-                                        <constraint firstItem="3dd-xO-TZx" firstAttribute="centerY" secondItem="ZOs-8k-gft" secondAttribute="centerY" id="vCx-Qa-NIQ"/>
-                                        <constraint firstItem="dHN-Gi-LiH" firstAttribute="leading" secondItem="ZOs-8k-gft" secondAttribute="leading" constant="20" symbolic="YES" id="zeK-Yp-YAw"/>
+                                        <constraint firstItem="Edy-Bt-BSP" firstAttribute="leading" secondItem="OTd-Ol-P6a" secondAttribute="leading" constant="20" symbolic="YES" id="0lO-LO-g6P"/>
+                                        <constraint firstItem="N1D-Y8-ToL" firstAttribute="leading" secondItem="OTd-Ol-P6a" secondAttribute="leading" constant="20" symbolic="YES" id="7bK-rK-BIh"/>
+                                        <constraint firstItem="gPk-B5-jvH" firstAttribute="leading" secondItem="N1D-Y8-ToL" secondAttribute="trailing" constant="8" symbolic="YES" id="Gnv-eK-fk6"/>
+                                        <constraint firstItem="Edy-Bt-BSP" firstAttribute="top" secondItem="ZtJ-vc-uc3" secondAttribute="bottom" constant="8" symbolic="YES" id="KBb-Zr-Se0"/>
+                                        <constraint firstItem="N1D-Y8-ToL" firstAttribute="top" secondItem="gPk-B5-jvH" secondAttribute="top" id="ZLn-49-ByE"/>
+                                        <constraint firstItem="gPk-B5-jvH" firstAttribute="leading" secondItem="ZtJ-vc-uc3" secondAttribute="trailing" constant="8" symbolic="YES" id="dtN-Bw-kYl"/>
+                                        <constraint firstItem="gPk-B5-jvH" firstAttribute="leading" secondItem="Edy-Bt-BSP" secondAttribute="trailing" constant="8" symbolic="YES" id="ecu-sq-lD2"/>
+                                        <constraint firstItem="ZtJ-vc-uc3" firstAttribute="leading" secondItem="OTd-Ol-P6a" secondAttribute="leading" constant="20" symbolic="YES" id="faq-4h-QIA"/>
+                                        <constraint firstItem="ZtJ-vc-uc3" firstAttribute="top" secondItem="N1D-Y8-ToL" secondAttribute="bottom" constant="8" symbolic="YES" id="fdb-pI-JY1"/>
+                                        <constraint firstAttribute="trailing" secondItem="gPk-B5-jvH" secondAttribute="trailing" id="h9q-6D-lyV"/>
+                                        <constraint firstItem="gPk-B5-jvH" firstAttribute="centerY" secondItem="OTd-Ol-P6a" secondAttribute="centerY" id="nmo-xm-1KJ"/>
+                                        <constraint firstItem="Edy-Bt-BSP" firstAttribute="bottom" secondItem="gPk-B5-jvH" secondAttribute="bottom" id="xkG-ji-t0P"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outlet property="descriptionLabel" destination="gc8-Ys-F8B" id="D2T-mA-04T"/>
-                                    <outlet property="recipeImageView" destination="3dd-xO-TZx" id="9dU-Zg-crt"/>
-                                    <outlet property="tags" destination="q73-SU-rpz" id="dQS-1q-VAI"/>
-                                    <outlet property="titleLabel" destination="dHN-Gi-LiH" id="IL1-1L-94z"/>
-                                    <segue destination="dEv-3E-nHn" kind="show" destinationCreationSelector="viewRecipeDetails:sender:" id="m83-U6-c5l"/>
+                                    <outlet property="descriptionLabel" destination="ZtJ-vc-uc3" id="get-EK-hhx"/>
+                                    <outlet property="recipeImageView" destination="gPk-B5-jvH" id="BG9-4z-7LA"/>
+                                    <outlet property="tags" destination="Edy-Bt-BSP" id="0uB-3B-pfC"/>
+                                    <outlet property="titleLabel" destination="N1D-Y8-ToL" id="MPA-rE-svG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -199,7 +196,7 @@
         <!--Add Recipe-->
         <scene sceneID="odU-qc-8Rs">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="y1u-TE-Y1H" customClass="RecipeEditorViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Recipe Editor" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y1u-TE-Y1H" customClass="RecipeEditorViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IgV-xD-d8J">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
