@@ -14,11 +14,16 @@ struct Category : Codable {
 
 
     static var sampleCategories: [Category] = [
+        Category(title: "Asian", imageData: UIImage(named: "placeholder")?.jpegData(compressionQuality: 0.9)),
         Category(title: "Breakfast",imageData: UIImage(named: "img_breakfast")!.jpegData(compressionQuality: 0.9)),
+        Category(title: "Dessert", imageData: UIImage(named:"img_dessert")!.jpegData(compressionQuality: 0.9)),
         Category(title: "Dinner", imageData: UIImage(named:"img_dinner")!.jpegData(compressionQuality: 0.9)),
+        Category(title: "Hot Starters", imageData: UIImage(named: "placeholder")?.jpegData(compressionQuality: 0.9)),
+        Category(title: "Italian", imageData: UIImage(named: "placeholder")?.jpegData(compressionQuality: 0.9)),
         Category(title: "Lunch", imageData: UIImage(named:"img_lunch")!.jpegData(compressionQuality: 0.9)),
-        Category(title: "Dessert", imageData: UIImage(named:"img_dessert")!.jpegData(compressionQuality: 0.9))
-        
+        Category(title: "Mediterranean", imageData: UIImage(named: "placeholder")?.jpegData(compressionQuality: 0.9)),
+        Category(title: "Salad", imageData: UIImage(named: "placeholder")?.jpegData(compressionQuality: 0.9)),
+        Category(title: "Soup", imageData: UIImage(named: "placeholder")?.jpegData(compressionQuality: 0.9)),
     ]
     
     static var archiveURL: URL {
