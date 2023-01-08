@@ -33,6 +33,8 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         userDefaults.set(true, forKey: "First Launch")
         
         recipes = Recipe.loadRecipes()!
+        
+        sortRecipes()
 
         // setup searchbar
         searchBarInit()
@@ -147,6 +149,7 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         if indexPath != nil && gestureRecognizer.state == .began {
             let indexPath = indexPath!
             let recipeTitle = recipesSource[indexPath.row].title
+            let recipeID = recipesSource[indexPath.row].id
             editingIndexPath = indexPath
             
             let alertController = UIAlertController(title: "Recipe Action", message: recipeTitle, preferredStyle: .actionSheet)
@@ -154,7 +157,15 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
             alertController.addAction(UIAlertAction(title: "Edit Recipe", style: .default) { [self, indexPath] _ in
                 performSegue(withIdentifier: "Edit Recipe", sender: tableView.cellForRow(at: indexPath) )
             })
-            alertController.addAction(UIAlertAction(title: "Delete Recipe", style: .destructive) { _ in })
+            alertController.addAction(UIAlertAction(title: "Delete Recipe", style: .destructive) { _ in
+                let confirmationAlert = UIAlertController(title: "Delete Recipe",
+                                                          message: "Are you sure you want to delete the recipe \"\(recipeTitle)\"?", preferredStyle: .alert)
+                confirmationAlert.addAction(UIAlertAction(title: "Yes", style: .destructive) { [self, indexPath, recipeID] _ in
+                    deleteRecipeAt(indexPath: indexPath, recipeID: recipeID)
+                })
+                confirmationAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                self.present(confirmationAlert, animated: true)
+            })
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             
             self.present(alertController, animated: true)
@@ -192,6 +203,21 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
          return RecipeEditorViewController(coder: coder, recipe: recipe)
      }
     
+    
+    func deleteRecipeAt(indexPath: IndexPath, recipeID: UUID) {
+        // remove recipe from the main recipes collection
+        recipes.remove(at: recipes.firstIndex { $0.id == recipeID }!)
+        
+        if searchController.isActive {
+            // remove recipe from search results collection
+            filteredRecipes.remove(at: filteredRecipes.firstIndex { $0.id == recipeID }!)
+        }
+        
+        // delete row from table
+        tableView.deleteRows(at: [indexPath], with: .fade)
+        
+        Recipe.saveRecipes(recipes)
+    }
     
     /*
     // MARK: - Navigation

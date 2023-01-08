@@ -87,7 +87,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Recipes" image="fork.knife" catalog="system" id="8qA-s4-SYk"/>
-                    <navigationItem key="navigationItem" id="ceH-KE-38P"/>
+                    <navigationItem key="navigationItem" title="Recipes" id="ceH-KE-38P"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="y1u-TE-Y1H" kind="show" identifier="Add Recipe" id="TUC-On-Yuz"/>
