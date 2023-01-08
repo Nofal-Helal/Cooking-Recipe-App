@@ -128,7 +128,7 @@ class RecipeEditorViewController: UIViewController {
     
     func getRecipe() -> Recipe {
         let id = recipeID ?? UUID()
-        let title = {
+        let title: String = {
             let text = overviewController.recipeTitleField.text
             if text == nil || text!.isEmpty {
                 return "Untitled Recipe"
@@ -138,7 +138,7 @@ class RecipeEditorViewController: UIViewController {
         }()
         let image = overviewController.imageData ?? UIImage(named: "placeholder")?.jpegData(compressionQuality: 0.9)
         let categories = overviewController.categories
-        let source = {
+        let source: String = {
             let text = overviewController.sourceField.text;
             if text == nil || text!.isEmpty {
                 return "You"
@@ -147,12 +147,12 @@ class RecipeEditorViewController: UIViewController {
             }
         }()
         let yield = overviewController.yieldField.text!
-        let preparationTime = {
+        let preparationTime: TimeInterval = {
             let components = Calendar.current.dateComponents([.hour, .minute],
                                                              from: overviewController.preparationTimePicker.date)
             return TimeInterval(components.hour! * 3600 + components.minute! * 60)
         }()
-        let cookingTime = {
+        let cookingTime: TimeInterval = {
             let components = Calendar.current.dateComponents([.hour, .minute],
                                                              from: overviewController.cookingTimePicker.date)
             return TimeInterval(components.hour! * 3600 + components.minute! * 60)
