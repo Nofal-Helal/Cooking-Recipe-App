@@ -19,6 +19,8 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     
     let userDefaults = UserDefaults.standard
     
+    var editingIndexPath: IndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -145,6 +147,7 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         if indexPath != nil && gestureRecognizer.state == .began {
             let indexPath = indexPath!
             let recipeTitle = recipesSource[indexPath.row].title
+            editingIndexPath = indexPath
             
             let alertController = UIAlertController(title: "Recipe Action", message: recipeTitle, preferredStyle: .actionSheet)
             alertController.addAction(UIAlertAction(title: "Favourite Recipe", style: .default) { _ in })
@@ -189,41 +192,7 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
          return RecipeEditorViewController(coder: coder, recipe: recipe)
      }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+    
     /*
     // MARK: - Navigation
 
@@ -238,5 +207,39 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         guard let indexPath = tableView.indexPath(for: sender) else {return nil}
         let recipe = recipes[indexPath.row]
         return RecipeDetailViewController(coder: coder, recipe: recipe)
+    }
+    
+    @IBAction func unwindFromSaveRecipe(segue: UIStoryboardSegue) {
+        assert(segue.identifier == "Unwind Save")
+        let recipeEditor = segue.source as! RecipeEditorViewController
+        let recipe = recipeEditor.getRecipe()
+        
+        if let selectedIndexPath = self.editingIndexPath {
+            // update the main recipes collection for saving
+            recipes[recipes.firstIndex {$0.id == recipe.id}!] = recipe
+            
+            if searchController.isActive {
+                // also update the filtered collection
+                filteredRecipes[selectedIndexPath.row] = recipe
+            }
+            
+            tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            
+        } else {
+            // append to main recipes collection
+            recipes.append(recipe)
+            
+            let newIndexPath = IndexPath(row: recipesSource.count, section: 0)
+            
+            if searchController.isActive {
+                updateSearchResults(for: searchController)
+                tableView.reloadRows(at: [newIndexPath], with: .automatic)
+            } else {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        }
+        
+        Recipe.saveRecipes(recipes)
+        editingIndexPath = nil
     }
 }

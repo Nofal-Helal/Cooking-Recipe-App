@@ -20,8 +20,9 @@ class OverviewTableViewController: UITableViewController, UIImagePickerControlle
     
     @IBOutlet var recipeImageView: UIImageView!
     @IBOutlet var cameraIcon: UIImageView!
+    var imageData: Data?
     
-    var categories: [String]!
+    var categories: [String] = []
     
     let numberRegex = try! NSRegularExpression(pattern: #"\d+(\.\d+){0,1}"#)
     
@@ -85,6 +86,7 @@ class OverviewTableViewController: UITableViewController, UIImagePickerControlle
         let image = info[.originalImage] as? UIImage
         if let imageData = image?.jpegData(compressionQuality: 0.9),
            let image = UIImage(data: imageData) {
+            self.imageData = imageData
             recipeImageView.image = image
             picker.dismiss(animated: true)
         }

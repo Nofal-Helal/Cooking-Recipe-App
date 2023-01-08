@@ -17,6 +17,7 @@ class RecipeEditorViewController: UIViewController {
     var directionsController: RecipeTextEditingViewController!
     
     var recipe: Recipe?
+    var recipeID: UUID? // id of recipe being edited
     
     required init?(coder: NSCoder, recipe: Recipe) {
         super.init(coder: coder)
@@ -80,6 +81,7 @@ class RecipeEditorViewController: UIViewController {
     
     // setup the input fields from recipe data
     func setup(forRecipe recipe: Recipe) {
+        self.recipeID = recipe.id
         self.navigationItem.title = "Edit Recipe"
         // Overview
         overviewController.recipeTitleField.text = recipe.title
@@ -93,10 +95,10 @@ class RecipeEditorViewController: UIViewController {
         overviewController.descriptionTextView.text = recipe.description
         if let image = recipe.image {
             overviewController.recipeImageView.image = UIImage(data: image)
+            overviewController.imageData = image
         }
         // Ingredients
         ingredientsController.textView.text = recipe.ingredients.reduce("") { acc, ingredient in
-            print("]]]]]]]]]]]]]]]]]]]]]]]]]]]  ",ingredient)
             var str = ""
             if let measurement = ingredient.measurement {
                 str.append(measurement.value.formatted(.number))
@@ -112,6 +114,61 @@ class RecipeEditorViewController: UIViewController {
         }
         // Directions
         directionsController.textView.text = recipe.directions.joined(separator: "\n")
+    }
+    
+    func getRecipe() -> Recipe {
+        let id = recipeID ?? UUID()
+        let title = {
+            let text = overviewController.recipeTitleField.text
+            if text == nil || text!.isEmpty {
+                return "Untitled Recipe"
+            } else {
+                return text!
+            }
+        }()
+        let image = overviewController.imageData ?? UIImage(named: "placeholder")?.jpegData(compressionQuality: 0.9)
+        let categories = overviewController.categories
+        let source = {
+            let text = overviewController.sourceField.text;
+            if text == nil || text!.isEmpty {
+                return "You"
+            } else {
+                return text!
+            }
+        }()
+        let yield = overviewController.yieldField.text!
+        let preparationTime = {
+            let components = Calendar.current.dateComponents([.hour, .minute],
+                                                             from: overviewController.preparationTimePicker.date)
+            return TimeInterval(components.hour! * 3600 + components.minute! * 60)
+        }()
+        let cookingTime = {
+            let components = Calendar.current.dateComponents([.hour, .minute],
+                                                             from: overviewController.cookingTimePicker.date)
+            return TimeInterval(components.hour! * 3600 + components.minute! * 60)
+        }()
+        let description = overviewController.descriptionTextView.text
+        
+        let ingredients = ingredientsController.textView.text!.components(separatedBy: "\n").map {
+            line in
+            return Ingredient(fromLine: line) ?? Ingredient(text: line)
+        }
+        
+        let directions = directionsController.textView.text!.components(separatedBy: "\n")
+        
+        return Recipe(id: id,
+                      title: title,
+                      categories: categories,
+                      source: source,
+                      yield: yield,
+                      preparationTime: preparationTime,
+                      cookingTime: cookingTime,
+                      description: description,
+                      image: image,
+                      ingredients: ingredients,
+                      directions: directions,
+                      isFavourite: false)
+        
     }
     
 }

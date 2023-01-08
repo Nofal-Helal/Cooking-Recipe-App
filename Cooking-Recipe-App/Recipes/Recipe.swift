@@ -9,7 +9,8 @@ import Foundation
 import UIKit.UIImage
 
 
-struct Recipe : Codable {
+struct Recipe : Codable, Identifiable {
+    var id: UUID = UUID()
     var title : String
     var categories: [String]
     var source: String
