@@ -17,24 +17,11 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     let searchController = UISearchController()
     let addButton = UIButton()
     
-    let userDefaults = UserDefaults.standard
-    
     var editingIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Save sample recipes on first launch
-        if userDefaults.bool(forKey: "First Launch") == false {
-            if Recipe.loadRecipes() == nil {
-                Recipe.saveRecipes(Recipe.sample_recipes)
-            }
-        }
-        userDefaults.set(true, forKey: "First Launch")
-        
-        // set theme
-        SettingsViewController.setDisplayTheme(DisplayTheme(rawValue: userDefaults.integer(forKey: "Display Theme")) ?? .System)
-
         // setup searchbar
         searchBarInit()
         

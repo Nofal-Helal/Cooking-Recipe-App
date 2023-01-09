@@ -14,6 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let userDefaults = UserDefaults.standard
+        
+        // Save sample recipes on first launch
+        if userDefaults.bool(forKey: "First Launch") == false {
+            if Recipe.loadRecipes() == nil {
+                Recipe.saveRecipes(Recipe.sample_recipes)
+            }
+        }
+        userDefaults.set(true, forKey: "First Launch")
+        
+        // set theme
+        SettingsViewController.setDisplayTheme(DisplayTheme(rawValue: userDefaults.integer(forKey: "Display Theme")) ?? .System)
+
         return true
     }
 
