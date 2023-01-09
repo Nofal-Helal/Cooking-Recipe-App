@@ -261,9 +261,10 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         let recipeEditor = segue.source as! RecipeEditorViewController
         let recipe = recipeEditor.getRecipe()
         
-        if let selectedIndexPath = self.editingIndexPath {
+        if let selectedIndexPath = self.editingIndexPath,
+           let index = recipes.firstIndex(where: { $0.id == recipe.id }) {
             // update the main recipes collection for saving
-            recipes[recipes.firstIndex {$0.id == recipe.id}!] = recipe
+            recipes[index] = recipe
             
             if searchController.isActive {
                 // also update the filtered collection
@@ -273,10 +274,10 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
             tableView.reloadRows(at: [selectedIndexPath], with: .none)
             
         } else {
+            assert(recipes.firstIndex { $0.id == recipe.id } == nil)
+            let newIndexPath = IndexPath(row: recipesSource.count, section: 0)
             // append to main recipes collection
             recipes.append(recipe)
-            
-            let newIndexPath = IndexPath(row: recipesSource.count, section: 0)
             
             if searchController.isActive {
                 updateSearchResults(for: searchController)
