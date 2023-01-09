@@ -99,7 +99,7 @@ extension RecipeDetailViewController: UITableViewDelegate, UITableViewDataSource
         cell.tag = indexPath.row
         switch indexPath.section {
         case 0:
-            cell.title.text = "\(ingreds[indexPath.row])"
+            cell.title.text = ingreds[indexPath.row].description
         default:
             return UITableViewCell()
         }

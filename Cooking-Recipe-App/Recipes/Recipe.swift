@@ -30,7 +30,7 @@ struct Ingredient: Codable {
 }
 
 
-extension Ingredient {
+extension Ingredient : CustomStringConvertible {
     // easier to use initializer
     init(_ measurementValue: Double, _ measurementUnit: Unit, _ text: String) {
         self.measurement = Measurement(value: measurementValue, unit: measurementUnit)
@@ -40,7 +40,7 @@ extension Ingredient {
     // Create an instance of Ingredient by parsing text
     init?(fromLine line: String) {
         let ingredientRegex = try! NSRegularExpression(
-            pattern: #"((?:\d+(?:\.\d+){0,1}){0,1}\s*[¼½¾⅓⅔]{0,1}){0,1}\s*(?:(tsp|tbsp|cups|cup|lb|oz|kg|g|ml|l)\s+){0,1}(.*)$"#,
+            pattern: #"((?:\d+(?:\.\d+){0,1}){0,1}\s*[¼½¾⅓⅔]{0,1}){0,1}\s*(?:(tsp|tbsp|cups|cup|lb|fl oz|floz|oz|kg|g|ml|l)\s+){0,1}(.*)$"#,
             options: .caseInsensitive)
         guard let match = ingredientRegex.firstMatch(in: line, range: NSRange(line.startIndex..., in: line)) else {return nil}
         
@@ -65,7 +65,8 @@ extension Ingredient {
         case "tbsp": return UnitVolume.tablespoons
         case "cups", "cup": return UnitVolume.cups
         case "lb": return UnitMass.pounds
-        case "oz": return UnitVolume.fluidOunces // TODO: ounces can be mass ounces or fluid ounces
+        case "fl oz", "floz": return UnitVolume.fluidOunces
+        case "oz": return UnitMass.ounces
         case "kg": return UnitMass.kilograms
         case "g": return UnitMass.grams
         case "ml": return UnitVolume.milliliters
@@ -91,6 +92,39 @@ extension Ingredient {
         return try! Double(number1, format: .number) + number2
     }
     
+    static func decimalToFractional(_ n: Double) -> String {
+        let integralPart = Int(n)
+        let intergralPartString = integralPart != 0 ? String(integralPart) : ""
+        let fractionalPart = round(n.truncatingRemainder(dividingBy: 1) * 1000) / 1000.0
+        switch fractionalPart {
+        case 0.25:
+            return intergralPartString + "¼"
+        case 0.5:
+            return intergralPartString + "½"
+        case 0.75:
+            return intergralPartString + "¾"
+        case 0.333:
+            return intergralPartString + "⅓"
+        case 0.666:
+            return intergralPartString + "⅔"
+        case 0:
+            return intergralPartString
+        default:
+            return String(n)
+        }
+    }
+    
+    var description: String {
+        var result = ""
+        if let measurement = measurement {
+            result += Ingredient.decimalToFractional(measurement.value)
+            if measurement.unit != Count.count {
+                result += " " + measurement.unit.symbol + " "
+            }
+        }
+        result += text
+        return result
+    }
 }
 
 // helper to get a matched group

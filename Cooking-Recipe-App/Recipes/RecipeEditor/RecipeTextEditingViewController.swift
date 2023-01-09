@@ -12,6 +12,8 @@ class RecipeTextEditingViewController: UIViewController {
     // the text view for inputting ingredients or directions
     @IBOutlet var textView: UITextView!
     
+    let userDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,9 +69,9 @@ class RecipeTextEditingViewController: UIViewController {
     func barButtons() -> [UIButton] {
         var symbols = [String]()
         // fractions
-        symbols.append(contentsOf: ["¼","⅓","½","⅔","¾","°C"])
+        symbols.append(contentsOf: ["¼","⅓","½","⅔","¾"])
         // units
-        symbols.append(contentsOf: ["tsp", "tbsp", "cup", "g", "ml"])
+        symbols.append(contentsOf: shortcuts())
         
         let buttons: [UIButton] = symbols.map { s in
             let button = UIButton()
@@ -105,4 +107,16 @@ class RecipeTextEditingViewController: UIViewController {
         textView.scrollRangeToVisible(selectedRange)
     }
 
+    func shortcuts() -> [String] {
+        let measurementSystem = MeasurementSystem(rawValue: userDefaults.integer(forKey: "Measurement System"))
+        
+        switch measurementSystem {
+        case .Metric, .none:
+            return ["°C", "tsp", "tbsp", "cup", "g", "mL", "kg", "L"]
+        case .Imperial:
+            return ["°F", "tsp", "tbsp", "cup", "fl oz", "oz", "lb"]
+        case .US:
+            return ["°F", "tsp", "tbsp", "cup", "fl oz", "oz", "lb"]
+        }
+    }
 }

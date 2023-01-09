@@ -109,18 +109,7 @@ class RecipeEditorViewController: UIViewController {
         }
         // Ingredients
         ingredientsController.textView.text = recipe.ingredients.reduce("") { acc, ingredient in
-            var str = ""
-            if let measurement = ingredient.measurement {
-                str.append(measurement.value.formatted(.number))
-                str.append(" ")
-                str.append(measurement.unit.symbol)
-                if !measurement.unit.symbol.isEmpty {
-                    str.append(" ")
-                }
-            }
-            str.append(ingredient.text)
-            str.append("\n")
-            return (acc ?? "") + str
+            return acc + ingredient.description + "\n"
         }
         // Directions
         directionsController.textView.text = recipe.directions.joined(separator: "\n")
