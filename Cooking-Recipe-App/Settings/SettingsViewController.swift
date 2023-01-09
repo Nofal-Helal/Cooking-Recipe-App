@@ -31,29 +31,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
         tableView.register(UINib(nibName: "HeaderTitleCell", bundle: nil), forCellReuseIdentifier: "HeaderTitleCell")
     }
     
-    //creating fileManager
-    static var archiveURL: URL {
-        var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            documentsURL.appendPathComponent("Settings.plist")
-        return documentsURL
-    }
-    //saving username, theme and measure
-    static func saveSettings(_ n: String) {
-        let plistEncoder = PropertyListEncoder()
-        if let encodedSetting = try? plistEncoder.encode(n) {
-            try? encodedSetting.write(to: archiveURL)
-        }
-    }
-    //load the stuff
-    /*static func loadSettings() -> [SettingsViewController]? {
-        let plistDecoder = PropertyListDecoder()
-        if let encodedSetting = try? Data(contentsOf: archiveURL),
-           let decodedSetting = try? plistDecoder.decode([SettingsViewController].self, from: encodedSetting) {
-            return decodedSetting
-        }
-        return nil
-    }*/
-
 }
 
 extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
