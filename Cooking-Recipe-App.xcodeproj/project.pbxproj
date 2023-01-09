@@ -450,7 +450,7 @@
 				DEVELOPMENT_TEAM = HG84WPP7B7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Cooking-Recipe-App/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Cooking Recipes";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Recipes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -480,7 +480,7 @@
 				DEVELOPMENT_TEAM = HG84WPP7B7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Cooking-Recipe-App/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Cooking Recipes";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Recipes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
