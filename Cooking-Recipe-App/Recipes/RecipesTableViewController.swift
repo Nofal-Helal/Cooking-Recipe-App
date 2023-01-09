@@ -33,7 +33,7 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         userDefaults.set(true, forKey: "First Launch")
         
         // set theme
-        SettingsViewController.DisplayTheme(num: userDefaults.integer(forKey: "Display Theme"))
+        SettingsViewController.setDisplayTheme(DisplayTheme(rawValue: userDefaults.integer(forKey: "Display Theme")) ?? .System)
 
         // setup searchbar
         searchBarInit()

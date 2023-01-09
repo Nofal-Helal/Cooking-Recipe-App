@@ -34,6 +34,7 @@
 		3FBB75DF293DD1DB00756A63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FBB75DD293DD1DB00756A63 /* Main.storyboard */; };
 		3FBB75E1293DD1DD00756A63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FBB75E0293DD1DD00756A63 /* Assets.xcassets */; };
 		3FBB75E4293DD1DD00756A63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FBB75E2293DD1DD00756A63 /* LaunchScreen.storyboard */; };
+		3FCB4812296C456C003C14DA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB4811296C456C003C14DA /* Settings.swift */; };
 		3FD5693629640F9C0067ACB4 /* DirectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD5693529640F9C0067ACB4 /* DirectionViewController.swift */; };
 		3FDE7A132949C0400010A3FC /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE7A122949C0400010A3FC /* CategoriesTableViewController.swift */; };
 		3FDE7A172949C5B20010A3FC /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE7A162949C5B20010A3FC /* CategoriesTableViewCell.swift */; };
@@ -69,6 +70,7 @@
 		3FBB75E0293DD1DD00756A63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FBB75E3293DD1DD00756A63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FBB75E5293DD1DD00756A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FCB4811296C456C003C14DA /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3FD5693529640F9C0067ACB4 /* DirectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionViewController.swift; sourceTree = "<group>"; };
 		3FDE7A122949C0400010A3FC /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
 		3FDE7A162949C5B20010A3FC /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				3F1FF097293DE03800826C00 /* SettingsViewController.swift */,
 				3F62FD82295AB855004365A7 /* HeaderTitleCell.swift */,
 				3F62FD83295AB855004365A7 /* HeaderTitleCell.xib */,
+				3FCB4811296C456C003C14DA /* Settings.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				3FBB75DA293DD1DB00756A63 /* SceneDelegate.swift in Sources */,
 				3F1FF098293DE03800826C00 /* SettingsViewController.swift in Sources */,
 				3FDE7A172949C5B20010A3FC /* CategoriesTableViewCell.swift in Sources */,
+				3FCB4812296C456C003C14DA /* Settings.swift in Sources */,
 				3F9E867A296AF134009F8A9B /* FavouritesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

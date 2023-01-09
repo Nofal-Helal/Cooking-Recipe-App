@@ -14,7 +14,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet var tableView: UITableView!
     let userDefaults = UserDefaults.standard
-    var displayNum: Int = 1
     
     var headers = ["Settings","Stay toned"]
     var sets = ["Measurement System","Display Theme","Rate US"]
@@ -106,9 +105,9 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             let setTitle = sets[indexPath.row]
             
             let alertController = UIAlertController(title: "Measurement System", message: setTitle, preferredStyle: .actionSheet)
-            alertController.addAction(UIAlertAction(title: "US Customary Units", style: .default) { _ in self.measurementSys(num: 1)})
-            alertController.addAction(UIAlertAction(title: "Metric", style: .default) { _ in self.measurementSys(num: 2)})
-            alertController.addAction(UIAlertAction(title: "UK Imperial", style: .destructive) { _ in self.measurementSys(num: 3)})
+            alertController.addAction(UIAlertAction(title: "Metric", style: .default) { _ in self.setMeasurementSystem(.Metric)})
+            alertController.addAction(UIAlertAction(title: "US Customary Units", style: .default) { _ in self.setMeasurementSystem(.US)})
+            alertController.addAction(UIAlertAction(title: "UK Imperial", style: .default) { _ in self.setMeasurementSystem(.Imperial)})
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             
             self.present(alertController, animated: true)
@@ -117,8 +116,9 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             let setTitle = sets[indexPath.row]
             
             let alertController = UIAlertController(title: "Display Theme", message: setTitle, preferredStyle: .actionSheet)
-            alertController.addAction(UIAlertAction(title: "Light", style: .default) { _ in SettingsViewController.DisplayTheme(num: 1) })
-            alertController.addAction(UIAlertAction(title: "Dark", style: .default) { _ in SettingsViewController.DisplayTheme(num: 2)})
+            alertController.addAction(UIAlertAction(title: "System", style: .default) { _ in SettingsViewController.setDisplayTheme(.System) })
+            alertController.addAction(UIAlertAction(title: "Light", style: .default) { _ in SettingsViewController.setDisplayTheme(.Light) })
+            alertController.addAction(UIAlertAction(title: "Dark", style: .default) { _ in SettingsViewController.setDisplayTheme(.Dark)})
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             
             self.present(alertController, animated: true)
@@ -137,33 +137,26 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         }
     }
     //funtion to change between dark and light modes
-    static func DisplayTheme(num: Int){
+    static func setDisplayTheme(_ displayTheme: DisplayTheme) {
         let userDefaults = UserDefaults.standard
         if #available(iOS 13.0, *){
             let appDelegate = UIApplication.shared.windows.first
-            if(num == 1){
+            
+            switch displayTheme {
+            case .Light:
                 appDelegate?.overrideUserInterfaceStyle = .light
-                userDefaults.set(1, forKey: "Display Theme")
-                return
-            }else if(num == 2){
+            case .Dark:
                 appDelegate?.overrideUserInterfaceStyle = .dark
-                userDefaults.set(2, forKey: "Display Theme")
-                return
+            case .System:
+                appDelegate?.overrideUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle
             }
+            
+            userDefaults.set(displayTheme.rawValue, forKey: "Display Theme")
         }
     }
     // for measurement system
-    func measurementSys(num: Int){
-        if(num == 1){
-
-            userDefaults.set(1, forKey: "measurement System")
-        }else if (num == 2){
-
-            userDefaults.set(2, forKey: "measurement System")
-        }else if (num == 3){
-
-            userDefaults.set(3, forKey: "measurement System")
-        }
+    func setMeasurementSystem(_ measurementSystem: MeasurementSystem){
+        userDefaults.set(measurementSystem.rawValue, forKey: "Measurement System")
     }
 
     
