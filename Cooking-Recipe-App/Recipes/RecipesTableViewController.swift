@@ -227,7 +227,11 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     }
     
     func favouriteRecipeAt(indexPath: IndexPath, recipeID: UUID) {
-        recipesSource[recipesSource.firstIndex {$0.id == recipeID}!].isFavourite.toggle()
+        let isFavourite = recipes[recipes.firstIndex {$0.id == recipeID}!].isFavourite
+        
+        recipes[recipes.firstIndex {$0.id == recipeID}!].isFavourite.toggle()
+        
+        recipesSource[recipesSource.firstIndex {$0.id == recipeID}!].isFavourite = !isFavourite
         
         Recipe.saveRecipes(recipes)
     }

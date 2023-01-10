@@ -45,9 +45,13 @@ class FavouritesTableViewController: RecipesTableViewController {
         
         Recipe.saveRecipes(recipes)
         
-        // remove from tableview source
-        if let tableViewSourceIndex = recipesSource.firstIndex(where: {$0.id == recipeID}) {
-            recipesSource.remove(at: tableViewSourceIndex)
+        // remove from both tableview source
+        if let favouritesIndex = favouriteRecipes.firstIndex(where: {$0.id == recipeID}) {
+            favouriteRecipes.remove(at: favouritesIndex)
+        }
+        
+        if let filteredIndex = filteredRecipes.firstIndex(where: {$0.id == recipeID}) {
+            filteredRecipes.remove(at: filteredIndex)
         }
         
         tableView.deleteRows(at: [indexPath], with: .fade)
