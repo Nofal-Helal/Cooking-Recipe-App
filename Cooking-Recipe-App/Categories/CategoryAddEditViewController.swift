@@ -7,13 +7,15 @@
 
 import UIKit
 
-class CategoryAddEditViewController: UIViewController {
+class CategoryAddEditViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     var category: Category?
     
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
+    
+    var categoryImageData: Data?
     
     required init?(coder: NSCoder, category: Category) {
         super.init(coder: coder)
@@ -42,15 +44,49 @@ class CategoryAddEditViewController: UIViewController {
         }
     }
     
-    @IBAction func saveBtn(_ sender: Any) {
-        
-    }
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
             
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                alertController.addAction(UIAlertAction(title: "Choose Photo", style: .default) { _ in
+                    imagePicker.sourceType = .photoLibrary
+                    self.present(imagePicker, animated: true, completion: nil)
+                })
+            }
+            
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                alertController.addAction(UIAlertAction(title: "Take Photo", style: .cancel) { _ in
+                    imagePicker.sourceType = .camera
+                })
+            }
+            
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            
+            alertController.popoverPresentationController?.sourceView = sender.view
+            present(alertController, animated: true)
+
         }
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        if let imageData = image?.jpegData(compressionQuality: 0.9),
+           let image = UIImage(data: imageData) {
+            self.categoryImageData = imageData
+            categoryImage.image = image
+            picker.dismiss(animated: true)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+
     /*
     // MARK: - Navigation
 

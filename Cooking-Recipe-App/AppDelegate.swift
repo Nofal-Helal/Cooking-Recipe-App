@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if Recipe.loadRecipes() == nil {
                 Recipe.saveRecipes(Recipe.sample_recipes)
             }
+            if Category.loadCategories() == nil {
+                Category.saveCategories(Category.sampleCategories)
+            }
         }
         userDefaults.set(true, forKey: "First Launch")
         

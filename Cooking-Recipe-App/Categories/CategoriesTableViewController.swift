@@ -9,10 +9,14 @@ import UIKit
 
 class CategoriesTableViewController: UITableViewController {
 
-    var categories = Category.sampleCategories
+    var categories: [Category]!
+    
+    var editingIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        categories = Category.loadCategories() ?? Category.sampleCategories
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -56,7 +60,9 @@ class CategoriesTableViewController: UITableViewController {
 
 
     @IBSegueAction func editCategory(_ coder: NSCoder, sender: UITableViewCell?) -> CategoryAddEditViewController? {
-        let category = categories[tableView.indexPath(for: sender!)!.row]
+        let indexPath = tableView.indexPath(for: sender!)!
+        let category = categories[indexPath.row]
+        editingIndexPath = indexPath
         return CategoryAddEditViewController(coder: coder, category: category)
     }
     
@@ -71,7 +77,9 @@ class CategoriesTableViewController: UITableViewController {
                 [self, indexPath] _ in
                 performSegue(withIdentifier: "EditCategory", sender: tableView.cellForRow(at: indexPath) )
             })
-            alertController.addAction(UIAlertAction(title: "Delete Recipe", style: .destructive) { _ in })
+            alertController.addAction(UIAlertAction(title: "Delete Category", style: .destructive) { [self] _ in
+                deleteCategoryAt(indexPath)
+            })
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             
             self.present(alertController, animated: true)
@@ -79,50 +87,33 @@ class CategoriesTableViewController: UITableViewController {
 
     }
     
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
+    func deleteCategoryAt(_ indexPath: IndexPath) {
+        let category = categories[indexPath.row].title
+        let confirmationAlert = UIAlertController(title: "Delete Category",
+                                                  message: "Are you sure you want to delete the category \"\(category)\"? This will remove the \"\(category)\" category tag from recipes",
+                                                  preferredStyle: .alert)
+        confirmationAlert.addAction(UIAlertAction(title: "Yes", style: .destructive) { [self, indexPath] _ in
+            // delete category
+            categories.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            
+            // remove category from recipes
+            var recipes = Recipe.loadRecipes()!.map { recipe -> Recipe in
+                var recipe = recipe
+                var categories = recipe.categories
+                if let index = categories.firstIndex(of: category) {
+                    categories.remove(at: index)
+                }
+                recipe.categories = categories
+                return recipe
+            }
+            
+            Recipe.saveRecipes(recipes)
+            Category.saveCategories(categories)
+        })
+        confirmationAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(confirmationAlert, animated: true)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
@@ -134,4 +125,23 @@ class CategoriesTableViewController: UITableViewController {
     }
     */
 
+    @IBAction func unwindFromCategorySave(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source as! CategoryAddEditViewController
+        
+        let categoryText = sourceViewController.categoryTextField.text!
+        let categoryTitle = categoryText.isEmpty ? "Unnamed Category" : categoryText
+        let categoryImage = sourceViewController.categoryImageData
+        let category = Category(title: categoryTitle, imageData: categoryImage)
+        
+        if let selectedIndexPath = editingIndexPath {
+            categories[selectedIndexPath.row] = category
+            tableView.reloadRows(at: [selectedIndexPath], with: .automatic)
+        } else {
+            let newIndexPath = IndexPath(row: categories.count, section: 0)
+            categories.append(category)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+        
+        Category.saveCategories(categories)
+    }
 }
