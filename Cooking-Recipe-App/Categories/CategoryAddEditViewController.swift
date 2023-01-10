@@ -49,6 +49,7 @@ class CategoryAddEditViewController: UIViewController, UIImagePickerControllerDe
         if sender.state == .ended {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
+            imagePicker.allowsEditing = true
             
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
@@ -74,7 +75,7 @@ class CategoryAddEditViewController: UIViewController, UIImagePickerControllerDe
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[.originalImage] as? UIImage
+        let image = info[.editedImage] as? UIImage
         if let imageData = image?.jpegData(compressionQuality: 0.9),
            let image = UIImage(data: imageData) {
             self.categoryImageData = imageData
