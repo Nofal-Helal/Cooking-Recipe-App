@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet var tableView: UITableView!
     let userDefaults = UserDefaults.standard
     
-    var headers = ["Settings","Stay toned"]
+    var headers = ["Settings"]
     var sets = ["Measurement System","Display Theme","Rate US"]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,15 +140,16 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     static func setDisplayTheme(_ displayTheme: DisplayTheme) {
         let userDefaults = UserDefaults.standard
         if #available(iOS 13.0, *){
-            let appDelegate = UIApplication.shared.windows.first
+            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            let window = windowScene?.windows.first
             
             switch displayTheme {
             case .Light:
-                appDelegate?.overrideUserInterfaceStyle = .light
+                window?.overrideUserInterfaceStyle = .light
             case .Dark:
-                appDelegate?.overrideUserInterfaceStyle = .dark
+                window?.overrideUserInterfaceStyle = .dark
             case .System:
-                appDelegate?.overrideUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle
+                window?.overrideUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle
             }
             
             userDefaults.set(displayTheme.rawValue, forKey: "Display Theme")

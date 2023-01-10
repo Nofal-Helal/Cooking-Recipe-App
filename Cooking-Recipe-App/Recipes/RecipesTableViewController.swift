@@ -28,11 +28,9 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         // floating add button
         addButtonInit()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        // set display theme
+        SettingsViewController.setDisplayTheme(DisplayTheme(rawValue: UserDefaults.standard.integer(forKey: "Display Theme")) ?? .System)
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {

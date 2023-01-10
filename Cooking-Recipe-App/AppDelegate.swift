@@ -28,9 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         userDefaults.set(true, forKey: "First Launch")
         
-        // set theme
-        SettingsViewController.setDisplayTheme(DisplayTheme(rawValue: userDefaults.integer(forKey: "Display Theme")) ?? .System)
-
         return true
     }
 
