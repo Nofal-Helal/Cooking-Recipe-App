@@ -29,55 +29,58 @@ class FavouritesTableViewController: RecipesTableViewController {
         sortRecipes()
     }
 
-    override var recipesSource: [Recipe] {
-        if searchController.isActive {
-            return filteredRecipes
-        } else {
-            return favouriteRecipes
-        }
-    }
-    
-    override func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        let searchText = searchBar.text!
-        
-        filteredRecipes = favouriteRecipes.filter { recipe in
-            recipe.title.lowercased().contains(searchText.lowercased())
-        }
-        
-        tableView.reloadData()
-    }
-
-    override func sortRecipes() {
-        if searchController.isActive {
-            filteredRecipes.sort(by: self.sortPredicate)
-        } else {
-            favouriteRecipes.sort(by: self.sortPredicate)
-        }
-        
-        if sortDirection { // descending
-            if searchController.isActive {
-                filteredRecipes.reverse()
-            } else {
-                favouriteRecipes.reverse()
-            }
-        }
-        
-        tableView.reloadData()
+    // override recipe source for the table view to favourites
+    override var customRecipesSource: [Recipe] {
+        get { favouriteRecipes }
+        set { favouriteRecipes = newValue }
     }
     
     override func favouriteRecipeAt(indexPath: IndexPath, recipeID: UUID) {
-        // recipes in this view are all favourited, we need only to handle unfavouriting
-        recipes[recipes.firstIndex {$0.id == recipeID}!].isFavourite = false
-        Recipe.saveRecipes(recipes)
-        favouriteRecipes.remove(at: favouriteRecipes.firstIndex { $0.id == recipeID }!)
+        let index = recipes.firstIndex {$0.id == recipeID}!
         
-        if searchController.isActive {
-            // remove recipe from search results collection
-            filteredRecipes.remove(at: filteredRecipes.firstIndex { $0.id == recipeID }!)
+        // recipes in this view are all favourited, we need only to handle unfavouriting
+        assert(recipes[index].isFavourite)
+        
+        recipes[index].isFavourite = false
+        
+        Recipe.saveRecipes(recipes)
+        
+        // remove from tableview source
+        if let tableViewSourceIndex = recipesSource.firstIndex(where: {$0.id == recipeID}) {
+            recipesSource.remove(at: tableViewSourceIndex)
         }
         
         tableView.deleteRows(at: [indexPath], with: .fade)
     }
 
+    override func customArrayAppend(recipe: Recipe) {
+        if recipe.isFavourite {
+            favouriteRecipes.append(recipe)
+        }
+    }
+    
+    override func customArrayUpdate(recipe: Recipe) {
+        if let index = recipesSource.firstIndex(where: {$0.id == recipe.id}) {
+            if recipe.isFavourite {
+                recipesSource[index] = recipe
+            } else {
+                recipesSource.remove(at: index)
+            }
+        }
+    }
+    
+    override func customTableViewUpdate(recipe: Recipe, at indexPath: IndexPath) {
+        if !recipe.isFavourite {
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else {
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
+    }
+    
+    override func customTableViewInsert(recipe: Recipe, at indexPath: IndexPath) {
+        if recipe.isFavourite {
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
 }

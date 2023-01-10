@@ -11,7 +11,7 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     
     var recipes: [Recipe]!
     var filteredRecipes: [Recipe] = [Recipe]()
-    var sortPredicate: (Recipe, Recipe) -> Bool = { $0.title.lexicographicallyPrecedes($1.title) }
+    var sortPredicate: (Recipe, Recipe) -> Bool = { $0.title.caseInsensitiveCompare($1.title) == .orderedAscending }
     var sortDirection: Bool = false // false for ascending, true for descending
 
     let searchController = UISearchController()
@@ -63,7 +63,7 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         let searchBar = searchController.searchBar
         let searchText = searchBar.text!
         
-        filteredRecipes = recipes.filter { recipe in
+        filteredRecipes = customRecipesSource.filter { recipe in
             recipe.title.lowercased().contains(searchText.lowercased())
         }
         
@@ -73,7 +73,7 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         let alertController = UIAlertController(title: "Sort", message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Recipe Title (A-Z)", style: .default) { _ in
-            self.sortPredicate = { $0.title.lexicographicallyPrecedes($1.title) }
+            self.sortPredicate = { $0.title.caseInsensitiveCompare($1.title) == .orderedAscending }
             self.sortRecipes()
         })
         alertController.addAction(UIAlertAction(title: "Cooking Time", style: .default) { _ in
@@ -98,29 +98,39 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
     }
     
     func sortRecipes() {
-        if searchController.isActive {
-            filteredRecipes.sort(by: self.sortPredicate)
-        } else {
-            recipes.sort(by: self.sortPredicate)
-        }
+        recipesSource.sort(by: self.sortPredicate)
         
         if sortDirection { // descending
-            if searchController.isActive {
-                filteredRecipes.reverse()
-            } else {
-                recipes.reverse()
-            }
+            recipesSource.reverse()
         }
         
         tableView.reloadData()
     }
 
     // MARK: - Table view data source
+    
+    /// override this to set the recipe source
+    var customRecipesSource: [Recipe] {
+        get { recipes }
+        set { recipes = newValue}
+    }
+    
+    /// recipes source for the tableview depending on the state of the search controller
     var recipesSource: [Recipe] {
-        if searchController.isActive {
-            return filteredRecipes
-        } else {
-            return recipes
+        get {
+            if searchController.isActive {
+                return filteredRecipes
+            } else {
+                return customRecipesSource
+            }
+        }
+        
+        set {
+            if searchController.isActive {
+                filteredRecipes = newValue
+            } else {
+                customRecipesSource = newValue
+            }
         }
     }
     
@@ -205,24 +215,19 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
         // remove recipe from the main recipes collection
         recipes.remove(at: recipes.firstIndex { $0.id == recipeID }!)
         
-        if searchController.isActive {
-            // remove recipe from search results collection
-            filteredRecipes.remove(at: filteredRecipes.firstIndex { $0.id == recipeID }!)
+        // remove from table view source array
+        if let index = recipesSource.firstIndex(where: {$0.id == recipeID}) {
+            recipesSource.remove(at: index)
         }
         
-        // delete row from table
+        // delete row from table view
         tableView.deleteRows(at: [indexPath], with: .fade)
         
         Recipe.saveRecipes(recipes)
     }
     
     func favouriteRecipeAt(indexPath: IndexPath, recipeID: UUID) {
-        recipes[recipes.firstIndex {$0.id == recipeID}!].isFavourite.toggle()
-        
-        if searchController.isActive {
-            // also update the filtered collection
-            filteredRecipes[filteredRecipes.firstIndex {$0.id == recipeID}!].isFavourite.toggle()
-        }
+        recipesSource[recipesSource.firstIndex {$0.id == recipeID}!].isFavourite.toggle()
         
         Recipe.saveRecipes(recipes)
     }
@@ -253,28 +258,51 @@ class RecipesTableViewController: UITableViewController, UISearchBarDelegate, UI
             // update the main recipes collection for saving
             recipes[index] = recipe
             
-            if searchController.isActive {
-                // also update the filtered collection
-                filteredRecipes[selectedIndexPath.row] = recipe
-            }
+            // update the tableview source array
+            customArrayUpdate(recipe: recipe)
             
-            tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            // update the tableview
+            customTableViewUpdate(recipe: recipe, at: selectedIndexPath)
             
         } else {
             assert(recipes.firstIndex { $0.id == recipe.id } == nil)
             let newIndexPath = IndexPath(row: recipesSource.count, section: 0)
+            
             // append to main recipes collection
             recipes.append(recipe)
             
+            // append to table view source array
+            customArrayAppend(recipe: recipe)
+            
             if searchController.isActive {
+                // update search results to automatically add it to filtered recipes array
                 updateSearchResults(for: searchController)
                 tableView.reloadRows(at: [newIndexPath], with: .automatic)
             } else {
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                customTableViewInsert(recipe: recipe, at: newIndexPath)
             }
         }
         
         Recipe.saveRecipes(recipes)
         editingIndexPath = nil
+    }
+    
+    
+    
+    /// Append recipe to the subclass
+    func customArrayAppend(recipe: Recipe) {}
+    
+    func customArrayUpdate(recipe: Recipe) {
+        if let index = recipesSource.firstIndex(where: {$0.id == recipe.id}) {
+            recipesSource[index] = recipe
+        }
+    }
+    
+    func customTableViewUpdate(recipe: Recipe, at indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+    func customTableViewInsert(recipe: Recipe, at indexPath: IndexPath) {
+        tableView.insertRows(at: [indexPath], with: .automatic)
     }
 }
