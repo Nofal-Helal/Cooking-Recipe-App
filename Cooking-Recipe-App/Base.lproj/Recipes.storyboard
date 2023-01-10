@@ -13,7 +13,7 @@
         <!--Recipes List-->
         <scene sceneID="cRD-oc-ybl">
             <objects>
-                <tableViewController title="Recipes List" id="rdI-8Y-VWv" customClass="RecipesTableViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Recipes Table" title="Recipes List" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rdI-8Y-VWv" customClass="RecipesTableViewController" customModule="Cooking_Recipe_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="128" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ngm-OG-6qu">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,7 +104,7 @@
         <!--Navigation Controller-->
         <scene sceneID="eiW-HL-ajy">
             <objects>
-                <navigationController id="0gH-0I-AKT" sceneMemberID="viewController">
+                <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="0gH-0I-AKT" sceneMemberID="viewController">
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oO6-Hu-edS">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>

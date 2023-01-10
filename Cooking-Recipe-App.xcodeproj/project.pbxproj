@@ -38,6 +38,7 @@
 		3FD5693629640F9C0067ACB4 /* DirectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD5693529640F9C0067ACB4 /* DirectionViewController.swift */; };
 		3FDE7A132949C0400010A3FC /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE7A122949C0400010A3FC /* CategoriesTableViewController.swift */; };
 		3FDE7A172949C5B20010A3FC /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE7A162949C5B20010A3FC /* CategoriesTableViewCell.swift */; };
+		F006AE67296D78D500F23E63 /* CategoryRecipesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F006AE66296D78D500F23E63 /* CategoryRecipesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		3FD5693529640F9C0067ACB4 /* DirectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionViewController.swift; sourceTree = "<group>"; };
 		3FDE7A122949C0400010A3FC /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
 		3FDE7A162949C5B20010A3FC /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
+		F006AE66296D78D500F23E63 /* CategoryRecipesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRecipesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				3FDE7A162949C5B20010A3FC /* CategoriesTableViewCell.swift */,
 				3F74F89B295D8D4C001EA832 /* CategoryAddEditViewController.swift */,
 				3FB3459B296ABAA30037A806 /* Category.swift */,
+				F006AE66296D78D500F23E63 /* CategoryRecipesTableViewController.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				3F31EDCD2959B7A1007FA31F /* OverviewTableViewController.swift in Sources */,
 				3FDE7A132949C0400010A3FC /* CategoriesTableViewController.swift in Sources */,
 				3F7C8E492952F07A005EF395 /* Tags.swift in Sources */,
+				F006AE67296D78D500F23E63 /* CategoryRecipesTableViewController.swift in Sources */,
 				3F62FD84295AB855004365A7 /* HeaderTitleCell.swift in Sources */,
 				3F020358295DC82300EBFBA1 /* CategoriesSelectorTableViewController.swift in Sources */,
 				3F74F89C295D8D4C001EA832 /* CategoryAddEditViewController.swift in Sources */,

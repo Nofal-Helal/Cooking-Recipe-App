@@ -58,7 +58,12 @@ class CategoriesTableViewController: UITableViewController {
 
     }
 
-
+    @IBSegueAction func viewRecipesInCategory(_ coder: NSCoder, sender: UITableViewCell?) -> CategoryRecipesTableViewController? {
+        let indexPath = tableView.indexPath(for: sender!)!
+        let category = categories[indexPath.row].title
+        return CategoryRecipesTableViewController(coder: coder, category: category)
+    }
+    
     @IBSegueAction func editCategory(_ coder: NSCoder, sender: UITableViewCell?) -> CategoryAddEditViewController? {
         let indexPath = tableView.indexPath(for: sender!)!
         let category = categories[indexPath.row]
